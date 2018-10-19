@@ -5,6 +5,7 @@
 class QVBoxLayout;
 class QPushButton;
 class QFileDialog;
+class QColorDialog;
 
 class Widget : public QWidget
 {
@@ -15,10 +16,14 @@ public:
     ~Widget();
 
 private:
-   void _addFileDialog();
+   void                 _addFileDialog();
+   void                 _addColorDialog();
    QVBoxLayout*         _ltMain;
    QPushButton*         _bpDiagFile;
    QFileDialog*         _dlFile;
+   QPushButton*         _bpDiagColor;
+   QColorDialog*        _dlColor;
+
 };
 
 #endif // WIDGET_H

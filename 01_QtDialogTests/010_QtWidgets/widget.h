@@ -6,6 +6,8 @@ class QVBoxLayout;
 class QPushButton;
 class QFileDialog;
 class QColorDialog;
+class QErrorMessage;
+class QFontDialog;
 
 class Widget : public QWidget
 {
@@ -16,13 +18,20 @@ public:
     ~Widget();
 
 private:
+   void                 _addCheckBoxNative();
    void                 _addFileDialog();
    void                 _addColorDialog();
-   QVBoxLayout*         _ltMain;
-   QPushButton*         _bpDiagFile;
-   QFileDialog*         _dlFile;
-   QPushButton*         _bpDiagColor;
-   QColorDialog*        _dlColor;
+   void                 _addErrorDialog();
+   void                 _addFontDialog();
+   QVBoxLayout          *_layoutMain;
+   QPushButton          *_btpFileDialog;
+   QFileDialog          *_dlgFile;
+   QPushButton          *_btpColorDialog;
+   QColorDialog         *_dlgColor;
+   QPushButton          *_btpErrorDialog;
+   QErrorMessage        *_dlgError;
+   QPushButton          *_btpFontDialog;
+   QFontDialog          *_dlgFont;
 
 };
 

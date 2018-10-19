@@ -47,13 +47,24 @@ Widget::_addColorDialog()
 void
 Widget::_addErrorDialog()
 {
+
+
+#if TARGET_IPHONE_SIMULATOR
+    qDebug() << "QErrorMessage crashed on iOS/simulator";
+#elif TARGET_OS_IPHONE
+    qDebug() << "QErrorMessage crashed on iOS/device";
+#else
+    qDebug() << "Not in iOS/Sim";
     _btpErrorDialog = new QPushButton(this);
-    _dlgError = new QErrorMessage(this);
     _btpErrorDialog->setText(tr("QErrorMessage"));
     _layoutMain->addWidget(_btpErrorDialog);
+
+    _dlgError = new QErrorMessage(this);
     //_dlgError->showMessage("Error messags");
     connect(_btpErrorDialog, SIGNAL(pressed()),
             _dlgError, SLOT(show()));
+
+#endif // IPHONE/SIM
 }
 
 void

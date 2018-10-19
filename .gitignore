@@ -8,6 +8,9 @@
 *.so
 *.dll
 *.dylib
+#QOwnNotes
+trash
+*.sqlite
 
 # Qt-es
 object_script.*.Release

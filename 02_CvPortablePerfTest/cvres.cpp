@@ -15,45 +15,12 @@ CvRes::CvRes(QObject *parent) : QObject(parent)
 }
 
 bool
-CvRes::imageRgb()
-{
-    return getImage(ImgType::Rgb);
-}
-
-bool
-CvRes::imageRgbFull()
-{
-    return getImage(ImgType::Rgb);
-}
-
-bool
-CvRes::imageRgbPart()
-{
-    return getImage(ImgType::RgbPart);
-}
-
-bool
-CvRes::imageRgbStereoLeft()
-{
-    return getImage(ImgType::RgbStereoLeft);
-}
-
-bool
-CvRes::imageRgbStereoRight()
-{
-    return getImage(ImgType::RgbStereoRight);
-}
-
-bool
-CvRes::imageChecked12x12()
-{
-    return getImage(ImgType::Checked12x12);
-}
-bool
 CvRes::videoAvi()
 {
     return getImage(ImgType::videoAvi);
 }
+
+
 bool
 CvRes::getImage(ImgType type)
 {
@@ -83,7 +50,7 @@ CvRes::getImage(ImgType type)
         break;
     }
     case ImgType::videoAvi:{
-        result = getImage(":/data/car.avi", "./car.avi");
+        result = getImage(":/data/car_edit.avi", "./car.avi");
         break;
     }
     default:{

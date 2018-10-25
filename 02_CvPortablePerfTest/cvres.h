@@ -11,15 +11,10 @@
 class CvRes : public QObject
 {
     Q_OBJECT
-enum class ImgType {Rgb, RgbPart, RgbStereoLeft, RgbStereoRight, Checked12x12, videoAvi, Unknown};
+enum class ImgType {Rgb, RgbPart, RgbStereoLeft, RgbStereoRight, Checked12x12,
+                    videoAvi, jpegSeq, Unknown};
 public:
     explicit CvRes(QObject *parent = nullptr);
-    static bool imageRgb();
-    static bool imageRgbFull();
-    static bool imageRgbPart();
-    static bool imageRgbStereoLeft();
-    static bool imageRgbStereoRight();
-    static bool imageChecked12x12();
     static bool videoAvi();
 
     static cv::Mat imageQtToCv(QImage &imageIn);

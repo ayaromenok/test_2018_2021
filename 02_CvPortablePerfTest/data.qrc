@@ -1,5 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>data/car.avi</file>
+        <file>data/car_edit.avi</file>
     </qresource>
 </RCC>

@@ -92,7 +92,7 @@ QCvObject::perfTest(bool bCL, bool bCuda, int count)
     CVQT_TIMESTAMP();
 
     CvQtPerf perf;
-    CvRes::imageRgb();
+    //CvRes::imageRgb();
     //cv::Mat imIn = cv::imread("./imageRgb.png");
     cv::Mat imIn = cv::imread("./test4k.png");
     _testVal = 0;
@@ -134,7 +134,7 @@ QCvObject::perfSuperResTest(bool bCL, bool bCuda, int count)
     const std::string outputVideoName = "./out.avi";
     const int scale = 4;
     const int iterations = count;
-    const int temporalAreaRadius = 8;
+    const int temporalAreaRadius = 4;
     const std::string optFlow = "farneback";
     cv::Ptr<cv::superres::SuperResolution> superRes;
     cv::Ptr<cv::superres::DenseOpticalFlowExt> of;
@@ -176,7 +176,9 @@ QCvObject::perfSuperResTest(bool bCL, bool bCuda, int count)
         fInfo.setFile(inputVideoName.c_str());
         qDebug() << "file is" << fInfo.size() << "bytes";
         frameSource = cv::superres::createFrameSource_Video(inputVideoName);
+        //frameSource = cv::superres::createFrameSource_Empty();
     }
+
 
     // skip first frame, it is usually corrupted
     {
@@ -204,7 +206,6 @@ QCvObject::perfSuperResTest(bool bCL, bool bCuda, int count)
     }
 
     superRes->setInput(frameSource);
-
     cv::VideoWriter writer;
     perf.start();
 

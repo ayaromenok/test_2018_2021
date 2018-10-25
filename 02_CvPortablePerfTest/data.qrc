@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>data/car.avi</file>
+    </qresource>
+</RCC>

@@ -1,3 +1,4 @@
 TEMPLATE = subdirs
 
-SUBDIRS = 01_QtDialogTests
+SUBDIRS = 01_QtDialogTests \
+    02_CvPortablePerfTest

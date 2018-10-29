@@ -1,3 +1,7 @@
+# QOwnNotes
+trash
+*sqlite
+
 # C++ objects and libs
 *.slo
 *.lo
@@ -8,9 +12,6 @@
 *.so
 *.dll
 *.dylib
-#QOwnNotes
-trash
-*.sqlite
 
 # Qt-es
 object_script.*.Release

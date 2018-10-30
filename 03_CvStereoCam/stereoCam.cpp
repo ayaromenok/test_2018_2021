@@ -12,7 +12,11 @@ int main(int, char**)
     Mat frame, frame2;
     cout << "Opening camera..." << endl;
     VideoCapture capture("/dev/video0", CAP_V4L); // open the first camera
+    capture.set(CAP_PROP_FRAME_WIDTH, 320);
+    capture.set(CAP_PROP_FRAME_HEIGHT, 240);
     VideoCapture capture2("/dev/video1", CAP_V4L); // open the second camera
+    capture2.set(CAP_PROP_FRAME_WIDTH, 320);
+    capture2.set(CAP_PROP_FRAME_HEIGHT, 240);
     if (!capture.isOpened())
     {
         cerr << "ERROR: Can't initialize camera capture" << endl;

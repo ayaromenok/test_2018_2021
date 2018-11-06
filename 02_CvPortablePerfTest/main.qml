@@ -1,9 +1,9 @@
 // Copyright(C) 2018 Andrey Yaromenok, ayaromenok@gmail.com
 // MIT License - https://github.com/ayaromenok/OpenCVwithQt/blob/master/LICENSE
 
-import QtQml 2.9 as QML
-import QtQuick 2.9 as QQ
-import QtQuick.Window 2.9
+import QtQml 2.0 as QML
+import QtQuick 2.0 as QQ
+import QtQuick.Window 2.0
 import QtQuick.Layouts 1.1 as QQL
 import QtQuick.Controls 2.2 as QQC
 import QtMultimedia 5.9 as QMM

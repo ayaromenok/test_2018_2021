@@ -1,5 +1,6 @@
 #include <iostream>
 #include "opencv2/opencv.hpp"
+#include <opencv2/core/opencl/opencl_info.hpp>
 using namespace cv;
 using namespace std;
 
@@ -32,7 +33,24 @@ double testImageCL(const string &inImage){
     
     return pc.getTimeMilli();
 }
- 
+
+void dumpCLInfo(){
+    //cv::dumpOpenCLInformation();
+    
+    cv::ocl::Context ctx = cv::ocl::Context::getDefault();
+    if (!ctx.ptr())
+    {
+        cout << "\t\t\tOpenCL is not available" << endl;
+    } else {
+        cv::ocl::Device device = cv::ocl::Device::getDefault();
+
+        cout << "\t\t\tOpenCL device is: "<< device.OpenCLVersion().c_str() << endl;
+        cout << "\t\t\tOpenCL/C device is: "<< device.OpenCL_C_Version().c_str() << endl;
+        cout << "\t\t\tOpenCL: " << device.driverVersion().c_str() << endl;
+        cout << "\t\t\tWorkGroupSize: " << device.maxWorkGroupSize() << endl;
+    }
+} 
+    
 int main(int argc, char** argv)
 {
     string strLena512("lena512.jpg");
@@ -40,11 +58,14 @@ int main(int argc, char** argv)
     string strLena2k("lena2k.jpg");
     string strLena4k("lena4k.jpg");
     
+    dumpCLInfo();
+    
     cout << "Test CPU:" << endl;
     cout << "time: " << testImage(strLena512) << " msec" << endl;   
     cout << "time: " << testImage(strLena1k) << " msec" << endl;   
     cout << "time: " << testImage(strLena2k) << " msec" << endl;   
     cout << "time: " << testImage(strLena4k) << " msec" << endl;   
+
     cout << "Test GPU/CL:" << endl;
     cout << "time: " << testImageCL(strLena512) << " msec" << endl;   
     cout << "time: " << testImageCL(strLena1k) << " msec" << endl;   

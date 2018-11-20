@@ -60,7 +60,7 @@ macx {
     message("* OpenCV settings for Mac OSX")
     INCLUDEPATH += $${CVMACX}/include
     LIBS += -L$${CVMACX}/lib
-    LIBS += -lopencv_core -lopencv_imgcodecs -lopencv_imgproc
+    LIBS += -lopencv_core -lopencv_imgcodecs -lopencv_imgproc -lopencv_videoio -lopencv_superres
     LIBS += -lopencv_calib3d
     contains(QMAKE_HOST.arch, x86_64){
         message("        arch: amd64")

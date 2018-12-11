@@ -1,5 +1,5 @@
 # Copyright(C) 2018 Andrey Yaromenok, ayaromenok@gmail.com
-# MIT License - https://github.com/ayaromenok/OpenCVwithQt/blob/master/LICENSE
+# MIT License - https://github.com/ayaromenok/test/blob/master/LICENSE
 
 #OpenCV SDK places on different platforms
 CVLINUX = /usr/local

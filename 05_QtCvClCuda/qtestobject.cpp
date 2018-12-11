@@ -14,12 +14,48 @@ void
 QTestObject::testCPU(){
     qInfo() << __FUNCTION__;
     getCpuInfo();
+    cv::Mat img, gray;
+    cv::TickMeter pc;
+
+    cv::imread("lena.jpg", cv::IMREAD_COLOR).copyTo(img);
+    if(img.ptr()){
+        qInfo() << "image" << img.cols << "x" << img.rows;
+    } else {
+        qWarning() << "image can't be read";
+        return;
+    }
+    pc.start();
+    cv::cvtColor(img, gray, cv::COLOR_BGR2GRAY);
+    cv::GaussianBlur(gray, gray, cv::Size(7,7), 1.5);
+    cv::Canny(gray, gray, 0, 50);
+    pc.stop();
+
+    qInfo() << "time" << pc.getTimeMicro() << "mk sec";
 }
 
 void
 QTestObject::testCL(){
     qInfo() << __FUNCTION__;
     getClInfo();
+    qInfo() << __FUNCTION__;
+    getCpuInfo();
+    cv::UMat img, gray;
+    cv::TickMeter pc;
+
+    cv::imread("lena.jpg", cv::IMREAD_COLOR).copyTo(img);
+    if(img.dims > 0){
+        qInfo() << "image" << img.cols << "x" << img.rows;
+    } else {
+        qWarning() << "image can't be read";
+        return;
+    }
+    pc.start();
+    cv::cvtColor(img, gray, cv::COLOR_BGR2GRAY);
+    cv::GaussianBlur(gray, gray, cv::Size(7,7), 1.5);
+    cv::Canny(gray, gray, 0, 50);
+    pc.stop();
+
+    qInfo() << "time" << pc.getTimeMicro() << "mk sec";
 }
 
 void

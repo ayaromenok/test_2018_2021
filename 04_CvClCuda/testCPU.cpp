@@ -16,6 +16,11 @@ double testImage(const string &inImage){
     Canny(gray, gray, 0, 50);
     pc.stop();
     
+    string outImage(inImage);
+    outImage.insert(0,"out_cpu_");
+    imwrite(outImage,gray);
+
+    
     return pc.getTimeMilli();
 }
 
@@ -30,6 +35,10 @@ double testImageCL(const string &inImage){
     GaussianBlur(gray, gray,Size(7, 7), 1.5);
     Canny(gray, gray, 0, 50);
     pc.stop();
+
+    string outImage(inImage);
+    outImage.insert(0,"out_cl_");
+    imwrite(outImage,gray);
     
     return pc.getTimeMilli();
 }

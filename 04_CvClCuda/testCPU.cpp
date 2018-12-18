@@ -68,6 +68,10 @@ int main(int argc, char** argv)
     string strLena4k("lena4k.jpg");
     
     dumpCLInfo();
+
+    cout << "warm up CPU/CL " << endl;
+    testImage(strLena512);   
+    testImageCL(strLena512);
     
     cout << "Test CPU:" << endl;
     cout << "time: " << testImage(strLena512) << " msec" << endl;   

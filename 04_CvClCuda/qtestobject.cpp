@@ -2,69 +2,94 @@
 #include "cvtestobject.h"
 
 #include <opencv2/core.hpp>
+#include <opencv2/core/opencl/opencl_info.hpp>
+
 #include <QDebug>
 #include <QImage>
 
 QTestObject::QTestObject(QObject *parent) : QObject(parent)
 {
-    qInfo() << __PRETTY_FUNCTION__;
+    //qInfo() << __PRETTY_FUNCTION__;
     _cto = new CvTestObject;
 }
 
 QTestObject::~QTestObject()
 {
-    qInfo() << __PRETTY_FUNCTION__;
+    //qInfo() << __PRETTY_FUNCTION__;
     delete _cto;
 }
 
-bool
-QTestObject::testCPU()
+double
+QTestObject::testCPU(int scale, bool isSaveResult, bool isShowInfo)
 {
-    qInfo() << __PRETTY_FUNCTION__;
+    //qInfo() << __PRETTY_FUNCTION__;
     cv::Mat img;
     QImage qImg;
+    double result = 0.0;
+
     if (qImg.load(":/lena.jpg")){
         img = cv::Mat(cv::Size(qImg.width(),qImg.height()), CV_8UC4, qImg.bits());
     } else {
         qWarning() << "can't read input file";
-        return false;
+        return -0.1;
     }
     if (img.ptr()){
-        qDebug() << "CPU: " << _cto->testCPU(img) << "msec";
+        result = _cto->testCPU(img, scale, isSaveResult);
+        if (isShowInfo){
+            qDebug() << "CPU: " << result << "msec";
+        }
     } else {
         qWarning() << "cv::Mat not loaded correctly";
-        return false;
+        return -0.2;
     }
-    return true;
+    return result;
 }
 
-bool
-QTestObject::testCL()
+double
+QTestObject::testCL(int scale, bool isSaveResult, bool isShowInfo, bool isShowCLInfo)
 {
-    qInfo() << __PRETTY_FUNCTION__;
+    //qInfo() << __PRETTY_FUNCTION__;
     cv::Mat inImg;
     cv::UMat img;
     QImage qImg;
-    if (qImg.load(":/lena.jpg")){
-        inImg = cv::Mat(cv::Size(qImg.width(),qImg.height()), CV_8UC4, qImg.bits());
-        inImg.copyTo(img);
+    double result = 0.0;
+
+    cv::ocl::Context ctx = cv::ocl::Context::getDefault();
+    if (!ctx.ptr())
+    {
+        std::cout << "\t\t\tOpenCL is not available" << std::endl;
+        return 0;
     } else {
-        qWarning() << "can't read input file";
-        return false;
-    }
-    if (img.dims > 0){
-        qDebug() << "CL: " << _cto->testCL(img) << "msec";
-    } else {
-        qWarning() << "cv::Mat not loaded correctly";
-        return false;
+        cv::ocl::Device device = cv::ocl::Device::getDefault();
+        if (isShowCLInfo){
+            qDebug() << "\tOpenCL device is: "<< device.OpenCLVersion().c_str();
+            qDebug()  << "\tOpenCL drievr version: " << device.driverVersion().c_str();
+            qDebug()  << "\tWorkGroupSize: " << device.maxWorkGroupSize();
+        }
+        if (qImg.load(":/lena.jpg")){
+            inImg = cv::Mat(cv::Size(qImg.width(),qImg.height()), CV_8UC4, qImg.bits());
+            inImg.copyTo(img);
+        } else {
+            qWarning() << "can't read input file";
+            return false;
+        }
+        if (img.dims > 0){
+            result = _cto->testCL(img, scale, isSaveResult);
+            if (isShowInfo){
+                qDebug() << "CL: " << result << "msec";
+            }
+        } else {
+            qWarning() << "cv::Mat not loaded correctly";
+            return false;
+        }
     }
     return true;
 }
 
 bool
-QTestObject::testCUDA()
+QTestObject::testCUDA(int scale, bool isSaveResult, bool isShowInfo)
 {
-    qInfo() << __PRETTY_FUNCTION__;
+    //qInfo() << __PRETTY_FUNCTION__;
     cv::Mat img;
     QImage qImg;
     if (qImg.load(":/lena.jpg")){
@@ -74,7 +99,7 @@ QTestObject::testCUDA()
         return false;
     }
     if (img.ptr()){
-        qDebug() << "CUDA: " << _cto->testCUDA(img) << "msec";
+        qDebug() << "CUDA: " << _cto->testCUDA(img, 8, false) << "msec";
     } else {
         qWarning() << "cv::Mat not loaded correctly";
         return false;

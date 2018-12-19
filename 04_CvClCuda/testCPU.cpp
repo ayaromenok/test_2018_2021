@@ -70,14 +70,14 @@ int main(int argc, char** argv)
     dumpCLInfo();
 
     cout << "warm up CPU/CL " << endl;
-    testImage(strLena4k);   
+//    testImage(strLena4k);   
     testImageCL(strLena4k);
     
     cout << "Test CPU:" << endl;
 //    cout << "time: " << testImage(strLena512) << " msec" << endl;   
 //    cout << "time: " << testImage(strLena1k) << " msec" << endl;   
 //    cout << "time: " << testImage(strLena2k) << " msec" << endl;   
-    cout << "time: " << testImage(strLena4k) << " msec" << endl;   
+//    cout << "time: " << testImage(strLena4k) << " msec" << endl;   
 
     cout << "Test GPU/CL:" << endl;
 //    cout << "time: " << testImageCL(strLena512) << " msec" << endl;   

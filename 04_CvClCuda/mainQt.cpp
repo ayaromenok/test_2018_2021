@@ -14,9 +14,13 @@ int main(int argc, char *argv[])
     qDebug() << "04_QtCvClCuda";
     QTestObject qto;
 
-    qto.testCPU();
-    qto.testCL();
-    qto.testCUDA();
+    qto.testCPU(8, false, true);
+    qto.testCL(8, false, true, true);
+    qto.testCPU(8, false, true);
+    qto.testCL(8, false, true);
+    qto.testCPU(8, true, true);
+    qto.testCL(8, true, true);
+    //qto.testCUDA();
 
     return 0;
     //return app.exec();

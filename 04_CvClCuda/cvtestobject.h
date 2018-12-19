@@ -7,9 +7,9 @@ class CvTestObject
 {
 public:
     CvTestObject();
-    int testCPU(const cv::Mat &img);
-    int testCL(const cv::UMat &img);
-    int testCUDA(const cv::Mat &img);
+    double testCPU(const cv::Mat &img, int scale = 1, bool isSaveResult = false);
+    double testCL(const cv::UMat &img, int scale = 1, bool isSaveResult = false);
+    double testCUDA(const cv::Mat &img, int scale = 1, bool isSaveResult = false);
 };
 
 #endif // CVTESTOBJECT_H

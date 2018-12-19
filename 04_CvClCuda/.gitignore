@@ -1,3 +1,5 @@
+out_*
+OpenCVTrace*
 /testCPU
 /testCL
 /testCUDA

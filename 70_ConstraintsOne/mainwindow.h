@@ -5,6 +5,7 @@
 #define MAINWINDOW_H
 
 #include <QWidget>
+class YaConstraintOne;
 
 class MainWidget : public QWidget
 {
@@ -14,6 +15,9 @@ public:
     MainWidget(QWidget *parent = 0);
     ~MainWidget();
     void paintEvent(QPaintEvent *);
+
+private:
+    YaConstraintOne*    _fs;
 };
 
 #endif // MAINWINDOW_H

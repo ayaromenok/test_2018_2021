@@ -11,10 +11,30 @@ class YaConstraintOne : public QObject
     Q_OBJECT
 public:
     explicit YaConstraintOne(QObject *parent = nullptr);
+    ~YaConstraintOne();
+    void setParams( float length = 5.0f,
+                    float frontWidth = 3.0f, float frontHeight = 2.0f,
+                    float backWidth = 2.0f, float backHeight = 1.0f,
+                    float vertShift = 0.0f );
 
+    float getLength();
+    float getFrontPerimeter();
+    float getBackPerimeter();
 signals:
 
 public slots:
+
+private:
+    void            calcPerimeters();
+    float           _lengthf;
+    float           _frontWidthf;
+    float           _frontHeightf;
+    float           _backWidthf;
+    float           _backHeightf;
+    float           _vertShiftf;
+
+    float           _frontPerimf;
+    float           _backPerimf;
 };
 
 #endif // YACONSTRAINTONE_H

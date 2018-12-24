@@ -6,7 +6,7 @@
 #include <QDebug>
 YaConstraintOne::YaConstraintOne(QObject *parent) : QObject(parent)
 {
-    qDebug() << __PRETTY_FUNCTION__;
+    //qDebug() << __PRETTY_FUNCTION__;
     _lengthf = 0.0f;
     _frontPerimf = 0.0f;
     _backPerimf = 0.0f;
@@ -35,7 +35,7 @@ YaConstraintOne::setParams(float length,
 void
 YaConstraintOne::calcPerimeters()
 {
-    qDebug() << __PRETTY_FUNCTION__;
+    //qDebug() << __PRETTY_FUNCTION__;
 
     _frontPerimf =(float) M_PI*0.5*(3*(_frontWidthf+_frontHeightf)- sqrt(
                                     (3*_frontWidthf+_frontHeightf)*
@@ -65,4 +65,24 @@ YaConstraintOne::getBackPerimeter()
 {
     qDebug() << __PRETTY_FUNCTION__ << _backPerimf;
     return _backPerimf;
+}
+
+float
+YaConstraintOne::getConusTopPoint()
+{
+    float tp = 0.0f;
+    tp = (1/(std::min(_frontPerimf, _backPerimf)/std::max(_frontPerimf,_backPerimf)))
+            *_lengthf;
+    //tp = atanf((_frontPerimf - _backPerimf)/_lengthf)*180/M_PI;
+    qDebug() << __PRETTY_FUNCTION__ << tp;
+    return tp;
+}
+
+float
+YaConstraintOne::getConusAngle()
+{
+    float ta = 0.0f;
+    ta = atanf((_frontPerimf - _backPerimf)/_lengthf)*180/M_PI;
+    qDebug() << __PRETTY_FUNCTION__ << ta;
+    return ta;
 }

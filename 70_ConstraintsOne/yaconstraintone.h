@@ -20,6 +20,8 @@ public:
     float getLength();
     float getFrontPerimeter();
     float getBackPerimeter();
+    float getConusTopPoint();
+    float getConusAngle();
 signals:
 
 public slots:

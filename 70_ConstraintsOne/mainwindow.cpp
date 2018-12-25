@@ -20,11 +20,11 @@ void
 MainWidget::paintEvent(QPaintEvent *)
 {
 
-    float fWidth = 44.27;//58.746;//
-    float fHeight = 44.27;//58.746;//4.427
-    float bWidth = 29.373;
-    float bHeight = 29.373;
-    float length = 50;
+    float fWidth = 40;//58.746;//
+    float fHeight = 40;//58.746;//4.427
+    float bWidth = 36;
+    float bHeight = 36;
+    float length = 10;//7.85;
 
     _fs->setParams(length, fWidth, fHeight, bWidth, bHeight);
 
@@ -56,15 +56,18 @@ MainWidget::paintEvent(QPaintEvent *)
     painter.drawText(5,195, "conus angle:");
     painter.drawText(80,195, QString::number(_fs->getConusAngle()));
 
-    painter.drawLine(150, 150, (150+_fs->getFrontPerimeter()), 150);
-    painter.drawLine(150, (150+length), (150+_fs->getBackPerimeter()), (150+length));
 
-
-    painter.setPen(Qt::green);
-    //painter.drawLine(300, 150, 300, 150+_fs->getConusTopPoint());
     float ctp = _fs->getConusTopPoint();
     float ctpl = ctp - length;
     float ca = _fs->getConusAngle();
+
+    painter.drawLine(150, 150, (150+_fs->getFrontPerimeter()), 150);
+    painter.drawLine(150, (150+length), (150+_fs->getBackPerimeter()), (150+length));
+
+    painter.setPen(Qt::gray);
+    painter.drawLine(150, 150-10, 150+ctp, 150-10);
+
+    painter.setPen(Qt::green);
     painter.drawArc(300,150,ctp*2,ctp*2,
                     (90-ca/2)*16, ca*16);
 

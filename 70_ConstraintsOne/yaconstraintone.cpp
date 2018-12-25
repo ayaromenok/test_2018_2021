@@ -71,9 +71,9 @@ float
 YaConstraintOne::getConusTopPoint()
 {
     float tp = 0.0f;
-    tp = (1/(std::min(_frontPerimf, _backPerimf)/std::max(_frontPerimf,_backPerimf)))
-            *_lengthf;
-    //tp = atanf((_frontPerimf - _backPerimf)/_lengthf)*180/M_PI;
+    tp = _frontPerimf/2/(((std::max(_frontPerimf, _backPerimf)-std::min(_frontPerimf,_backPerimf))/2)
+            /_lengthf);
+
     qDebug() << __PRETTY_FUNCTION__ << tp;
     return tp;
 }
@@ -82,7 +82,7 @@ float
 YaConstraintOne::getConusAngle()
 {
     float ta = 0.0f;
-    ta = atanf((_frontPerimf - _backPerimf)/_lengthf)*180/M_PI;
+    ta = atanf(abs(_frontPerimf - _backPerimf)/_lengthf/2)*180/M_PI*2;
     qDebug() << __PRETTY_FUNCTION__ << ta;
     return ta;
 }

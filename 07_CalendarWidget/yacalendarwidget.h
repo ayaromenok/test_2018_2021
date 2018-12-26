@@ -5,6 +5,8 @@
 
 class QGridLayout;
 class QCalendarWidget;
+class QDate;
+class QGroupBox;
 
 class YaCalendarWidget : public QWidget
 {
@@ -21,6 +23,8 @@ private:
     QGridLayout*        _layout;
     QCalendarWidget*    _calCur;
     QCalendarWidget*    _calNext;
+    QVector<QDate>*     _dates;
+    QGroupBox*          _gbDates;
 };
 
 #endif // YACALENDARWIDGET_H

@@ -1,10 +1,12 @@
 #include "mainwindow.h"
-#include<QtWidgets>
+#include <QtWidgets>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
 : QWidget(parent)
 {
     setUI();
+    testRT();
 }
 
 MainWindow::~MainWindow()
@@ -23,8 +25,9 @@ MainWindow::setUI()
     _gboxCtrl = new QGroupBox("control");
     _gboxCtrl->setMinimumSize(120,240);
     _lbImg = new QLabel("image");
-    _pxmpImg = new QPixmap(128,96);
-    _lbImg->setPixmap(*_pxmpImg);
+    _imgImg = new QImage(128, 96, QImage::Format_RGB32);
+    _imgImg->fill(Qt::lightGray);
+    _lbImg->setPixmap(QPixmap::fromImage(*_imgImg));
     _lbCtrl = new QLabel("control");
     _lbCtrlNext = new QLabel("control next");
 
@@ -39,4 +42,11 @@ MainWindow::setUI()
     _loutHBox->addWidget(_gboxCtrl);
 
     this->setLayout(_loutHBox);
+}
+
+void
+MainWindow::testRT()
+{
+    _imgImg->fill(Qt::darkCyan);
+    _lbImg->setPixmap(QPixmap::fromImage(*_imgImg));
 }

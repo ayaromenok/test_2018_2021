@@ -7,6 +7,7 @@ class QVBoxLayout;
 class QGroupBox;
 class QLabel;
 class QPixmap;
+class QImage;
 
 class MainWindow : public QWidget
 {
@@ -18,6 +19,7 @@ public:
 
 private:
     void            setUI();
+    void            testRT();
     QHBoxLayout     *_loutHBox;
     QGroupBox       *_gboxImg;
     QGroupBox       *_gboxCtrl;
@@ -26,7 +28,7 @@ private:
     QLabel          *_lbImg;
     QLabel          *_lbCtrl;
     QLabel          *_lbCtrlNext;
-    QPixmap         *_pxmpImg;
+    QImage          *_imgImg;
 };
 
 #endif // MAINWINDOW_H

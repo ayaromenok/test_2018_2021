@@ -5,8 +5,8 @@
 MainWindow::MainWindow(QWidget *parent)
 : QWidget(parent)
 {
-    _width = 128;
-    _height = 96;
+    _width = 320;
+    _height = 240;
     setUI();
     testRT();
 }
@@ -23,9 +23,9 @@ MainWindow::setUI()
     _loutImg = new QVBoxLayout();
     _loutCtrl = new QVBoxLayout();
     _gboxImg = new QGroupBox("image");
-    _gboxImg->setMinimumSize(240,240);
+    _gboxImg->setMinimumSize(_width+10,_height+10);
     _gboxCtrl = new QGroupBox("control");
-    _gboxCtrl->setMinimumSize(120,240);
+    _gboxCtrl->setMinimumSize(120,_height+10);
     _lbImg = new QLabel("image");
     _imgImg = new QImage(_width, _height, QImage::Format_RGB32);
     _imgImg->fill(Qt::lightGray);

@@ -12,7 +12,7 @@ int main(int, char**)
     Mat frame;
     cout << "Opening camera..." << endl;
     //VideoCapture capture("v4l2src ! video/x-raw,format=YUY2,width=640,height=480,framerate=30/1 ! videoconvert ! appsink",CAP_GSTREAMER);
-    VideoCapture capture(" rkisp device=/dev/video0 sensor-id=1 io-mode=4 path-iqf=/etc/cam_iq/rk-ov4689.xml ! video/x-raw,format=NV12,width=672,height=380,framerate=30/1 ! videoconvert ! appsink",CAP_GSTREAMER);
+    VideoCapture capture(" rkisp device=/dev/video0 sensor-id=1 io-mode=4 path-iqf=/etc/cam_iq/rk-ov4689.xml ! video/x-raw,format=NV12,width=672,height=380,framerate=60/1 ! videoconvert ! appsink",CAP_GSTREAMER);
 //    VideoCapture capture("/dev/video0", CAP_V4L); // open the first camera
     //capture.set(CAP_PROP_FRAME_WIDTH, 640);
     //capture.set(CAP_PROP_FRAME_HEIGHT, 480);

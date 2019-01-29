@@ -4,9 +4,9 @@
 int main(int, char**)
 {
     cv::Mat frame;
-	cv::VideoCapture cap(0); // open the first camera
+    cv::VideoCapture cap(0, cv::CAP_V4L); // open the first camera
 
-	cap.set(cv::CAP_PROP_FRAME_WIDTH, 640);
+    cap.set(cv::CAP_PROP_FRAME_WIDTH, 640);
     cap.set(cv::CAP_PROP_FRAME_HEIGHT, 480);
     if (!cap.isOpened()) {
         std::cerr << "ERROR: Can't initialize camera capture" << std::endl;

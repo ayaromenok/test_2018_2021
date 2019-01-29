@@ -4,7 +4,8 @@
 int main(int, char**)
 {
     cv::Mat frame;
-    cv::VideoCapture cap(0, cv::CAP_V4L); // open the first camera
+    cv::VideoCapture cap(0, cv::CAP_V4L); 		// RPi/Linux
+//    cv::VideoCapture cap(0); 				// PC/Linux
 
     cap.set(cv::CAP_PROP_FRAME_WIDTH, 640);
     cap.set(cv::CAP_PROP_FRAME_HEIGHT, 480);
@@ -43,8 +44,9 @@ int main(int, char**)
         }
         else {
             int64 tp0 = cv::getTickCount();
-            cv::Mat processed;
-            cv::Canny(frame, processed, 400, 1000, 5);
+            cv::Mat gray, processed;
+            cv:cvtColor(frame, gray, cv::COLOR_BGR2GRAY);
+            cv::Canny(gray, processed, 400, 1000, 5);
             processingTime += cv::getTickCount() - tp0;
             imshow("Frame - pro", processed);
         }

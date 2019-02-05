@@ -1,0 +1,42 @@
+./video2fileRk3399.sh
+XCAM INFO device_manager.cpp:90: open /usr/lib/libcam_ia.so successed
+XCAM INFO device_manager.cpp:96: open /usr/lib/libcam_engine_cifisp.so successed
+XCAM INFO device_manager.cpp:106: dlsym rkisp_start success
+Setting pipeline to PAUSED ...
+XCAM WARNING v4l2_device.cpp:171: set capture mode(0x00004000) failed but continue
+XCAM INFO x3a_image_process_center.cpp:48: Add processor(IspImageProcessor) into image processor center
+Pipeline is live and does not need PREROLL ...
+Setting pipeline to PLAYING ...
+New clock: GstSystemClock
+XCAM INFO v4l2_device.cpp:322: device(/dev/video0) set format(w:1280, h:720, pixelformat:NV12, bytesperline:1280)
+XCAM WARNING rkisp_device.cpp:48: atomisp device(/dev/video0) get framerate failed 
+XCAM ERROR rkisp_device.cpp:72: atomisp device(/dev/video0) try subdev format failed
+XCAM WARNING v4l2_device.cpp:233: device(/dev/video0) pre_set_format failed
+XCAM INFO v4l2_device.cpp:300: device(/dev/video0) set format(w:1280, h:720, pixelformat:NV12, bytesperline:1280,image_size:1382400)
+XCAM INFO device_manager.cpp:208: device manager start, capture dev fd: 7
+
+CAMHALInfo:   CAMHALVERSION is: 2.0.9.0
+
+CAMHALInfo:   libcam_ia: 2.0.c.0
+
+CAMHALInfo:   init:tuningFile /etc/cam_iq/rk-ov4689.xml
+CAMHALInfo:   load tunning file success.
+AWB: AwbConfigure: AWB_VERSION_10
+
+CAMHALInfo:   rkisp_start: interface isp dev started
+XCAM INFO device_manager.cpp:211: device manager isp_init _rkisp_engine:0x7f88006c70
+
+XCAM INFO device_manager.cpp:216: rkisp_init engine succeed
+
+XCAM INFO v4l2_device.cpp:473: request buffers in device(/dev/video0)
+XCAM INFO v4l2_device.cpp:563: init buffer poll in device(/dev/video0), cnt: 8
+XCAM INFO v4l2_device.cpp:440: device(/dev/video0) started successfully
+XCAM INFO xcam_analyzer.cpp:164: Analyzer(X3aAnalyzerSimple) initialized(w:1280, h:720).
+XCAM INFO xcam_analyzer.cpp:213: Analyzer(X3aAnalyzerSimple) started in async mode.
+XCAM INFO image_processor.cpp:182: ImageProcessor(IspImageProcessor) started
+XCAM INFO x3a_image_process_center.cpp:84: 3a process center started
+Redistribute latency...
+
+(gst-launch-1.0:2457): GStreamer-CRITICAL **: 05:40:44.715: gst_object_unref: assertion 'object != NULL' failed
+AWB: AwbConfigure: AWB_VERSION_10
+

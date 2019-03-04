@@ -16,10 +16,13 @@ int main(int argc, char *argv[])
 
     qto.testCPU(8, false, true);
     qto.testCL(8, false, true, true);
+    qto.testCUDA(8, false, true);
     qto.testCPU(8, false, true);
     qto.testCL(8, false, true);
+    qto.testCUDA(8, false, true);
     qto.testCPU(8, true, true);
     qto.testCL(8, true, true);
+    qto.testCUDA(8, false, true);
     //qto.testCUDA();
 
     return 0;

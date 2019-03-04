@@ -13,7 +13,7 @@ public:
     double testCPU(int scale = 1, bool isSaveResult = false, bool isShowInfo = false);
     double testCL(int scale = 1, bool isSaveResult = false, bool isShowInfo = false,
                   bool isShowCLInfo = false);
-    bool testCUDA(int scale = 1, bool isSaveResult = false, bool isShowInfo = false);
+    double testCUDA(int scale = 1, bool isSaveResult = false, bool isShowInfo = false);
 
 signals:
 

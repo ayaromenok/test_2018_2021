@@ -49,7 +49,7 @@ CvTestObject::testCL(const cv::UMat &img, int scale, bool isSaveResult)
 double
 CvTestObject::testCUDA(const cv::Mat &img, int scale, bool isSaveResult)
 {
-    std::cout << __PRETTY_FUNCTION__ << std::endl;
-    std::cout << "test image: " << img.cols << "x" << img.rows << std::endl;
+    //std::cout << __PRETTY_FUNCTION__ << std::endl;
+    //std::cout << "test image: " << img.cols << "x" << img.rows << std::endl;
     return 0;
 }

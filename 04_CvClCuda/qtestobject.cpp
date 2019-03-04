@@ -58,7 +58,7 @@ QTestObject::testCL(int scale, bool isSaveResult, bool isShowInfo, bool isShowCL
     if (!ctx.ptr())
     {
         std::cout << "\t\t\tOpenCL is not available" << std::endl;
-        return 0;
+        return -0.1;
     } else {
         cv::ocl::Device device = cv::ocl::Device::getDefault();
         if (isShowCLInfo){
@@ -71,7 +71,7 @@ QTestObject::testCL(int scale, bool isSaveResult, bool isShowInfo, bool isShowCL
             inImg.copyTo(img);
         } else {
             qWarning() << "can't read input file";
-            return false;
+            return -0.2;
         }
         if (img.dims > 0){
             result = _cto->testCL(img, scale, isSaveResult);
@@ -80,30 +80,35 @@ QTestObject::testCL(int scale, bool isSaveResult, bool isShowInfo, bool isShowCL
             }
         } else {
             qWarning() << "cv::Mat not loaded correctly";
-            return false;
+            return -0.3;
         }
     }
-    return true;
+    return result;
 }
 
-bool
+double
 QTestObject::testCUDA(int scale, bool isSaveResult, bool isShowInfo)
 {
     //qInfo() << __PRETTY_FUNCTION__;
     cv::Mat img;
     QImage qImg;
+    double result = 0.0;
+
     if (qImg.load(":/lena.jpg")){
         img = cv::Mat(cv::Size(qImg.width(),qImg.height()), CV_8UC4, qImg.bits());
     } else {
         qWarning() << "can't read input file";
-        return false;
+        return -0.2;
     }
     if (img.ptr()){
-        qDebug() << "CUDA: " << _cto->testCUDA(img, 8, false) << "msec";
+        result = _cto->testCUDA(img, scale, false);
+        if (isShowInfo){
+            qDebug() << "CUDA: " << result << "msec";
+        }
     } else {
         qWarning() << "cv::Mat not loaded correctly";
-        return false;
+        return 0.3;
     }
 
-    return false;
+    return result;
 }

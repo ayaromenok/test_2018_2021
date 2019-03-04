@@ -14,9 +14,10 @@ CvTestObject::testCPU(const cv::Mat &img, int scale, bool isSaveResult)
     cv::TickMeter pc;
     cv::Mat inGray, gray;
 
-    pc.start();
     cv::cvtColor(img, inGray, cv::COLOR_BGR2GRAY);
     cv::resize(inGray, gray,cv::Size(img.rows*scale, img.cols*scale));
+
+    pc.start();
     cv::Canny(gray, gray, 0, 50);
     pc.stop();
 
@@ -33,9 +34,10 @@ CvTestObject::testCL(const cv::UMat &img, int scale, bool isSaveResult)
     cv::TickMeter pc;
     cv::UMat inGray, gray;
 
-    pc.start();
     cv::cvtColor(img, inGray, cv::COLOR_BGR2GRAY);
     cv::resize(inGray, gray,cv::Size(img.rows*scale, img.cols*scale));
+
+    pc.start();
     cv::Canny(gray, gray, 0, 50);
     pc.stop();
 
@@ -51,5 +53,26 @@ CvTestObject::testCUDA(const cv::Mat &img, int scale, bool isSaveResult)
 {
     //std::cout << __PRETTY_FUNCTION__ << std::endl;
     //std::cout << "test image: " << img.cols << "x" << img.rows << std::endl;
-    return 0;
+    cv::TickMeter pc;
+    cv::Mat inGray, gray;
+    cv::cuda::GpuMat imgOutCu;
+
+
+    cv::cvtColor(img, inGray, cv::COLOR_BGR2GRAY);
+    cv::resize(inGray, gray, cv::Size(img.rows*scale, img.cols*scale));
+
+    const cv::cuda::GpuMat inGrayCu(gray);
+    cv::Ptr<cv::cuda::CannyEdgeDetector> canny
+            = cv::cuda::createCannyEdgeDetector(0, 50, 3, false);
+
+    pc.start();
+    canny->detect(inGrayCu, imgOutCu);
+    pc.stop();
+
+
+    if (isSaveResult){
+        const cv::Mat imgOut(imgOutCu);
+        cv::imwrite("testCUDA.png", imgOut);
+    }
+    return pc.getTimeMilli();
 }

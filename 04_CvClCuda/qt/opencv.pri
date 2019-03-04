@@ -18,6 +18,7 @@ linux:!android {
     LIBS += -lopencv_core -lopencv_imgcodecs -lopencv_imgproc -lopencv_img_hash -lopencv_videoio
     LIBS += -lopencv_calib3d -lopencv_superres
     LIBS += -lOpenCL
+    LIBS += -lopencv_cudaimgproc
 
 CONFIG(debug, debug|release) {
         message("* use DEBUG HIGHGUI for Unix/Linux only.")

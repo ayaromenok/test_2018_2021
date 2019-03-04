@@ -101,7 +101,7 @@ QTestObject::testCUDA(int scale, bool isSaveResult, bool isShowInfo)
         return -0.2;
     }
     if (img.ptr()){
-        result = _cto->testCUDA(img, scale, false);
+        result = _cto->testCUDA(img, scale, isSaveResult);
         if (isShowInfo){
             qDebug() << "CUDA: " << result << "msec";
         }

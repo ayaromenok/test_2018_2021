@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
     qto.testCUDA(8, false, true);
     qto.testCPU(8, true, true);
     qto.testCL(8, true, true);
-    qto.testCUDA(8, false, true);
+    qto.testCUDA(8, true, true);
     //qto.testCUDA();
 
     return 0;

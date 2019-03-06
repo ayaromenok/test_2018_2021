@@ -21,3 +21,14 @@ error with max group size on Arm Mali - need to report to OpenCV
 `OpenCL error CL_OUT_OF_RESOURCES (-5) during call: clEnqueueNDRangeKernel('stage1_with_sobel', dims=2, globalsize=2048x2048x1, localsize=32x8x1) sync=false`
 - TegraK1
  issue with POCL load: `Failed to load OpenCL runtime (expected version 1.1+)`
+
+
+## Select OpenCL device
+
+`export OPENCV_OPENCL_DEVICE='::3'`
+
+In case of X230 is:
+	- 0 - NVidia OpenCL;
+	- 1 - POCL/CPU;
+	- 2 - POCL/NVIDIA;
+	- 3 - Intel OpenCL;

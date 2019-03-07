@@ -1,0 +1,61 @@
+CPU:  90.1235 msec
+	OpenCL device is:  OpenCL 1.2 CUDA
+	OpenCL drievr version:  410.79
+	WorkGroupSize:  1024
+[ WARN:0] Detected OpenCL cache directory for other version of OpenCL device. We assume that these directories are obsolete after OpenCL runtime/drivers upgrade.
+[ WARN:0] Trying to remove these directories...
+[ WARN:0] - NVIDIA_Corporation--GeForce_GTX_1050--1_2
+[ WARN:0] Note: You can disable this behavior via this option: OPENCV_OPENCL_CACHE_CLEANUP=0
+[ WARN:0] Removed: /home/az/.cache/opencv/4.0-dev/opencl_cache/NVIDIA_Corporation--GeForce_GTX_1050--1_2
+CL:  13.6245 msec
+CUDA:  124.918 msec
+CPU:  83.8977 msec
+CL:  0.431613 msec
+CUDA:  60.3975 msec
+CPU:  80.3985 msec
+CL:  0.466135 msec
+CUDA:  58.9185 msec
+---------------------
+CPU:  89.3677 msec
+	OpenCL device is:  OpenCL 1.2 pocl HSTR: pthread-x86_64-pc-linux-gnu-ivybridge
+	OpenCL drievr version:  1.2
+	WorkGroupSize:  4096
+CL:  44.6427 msec
+CUDA:  126.646 msec
+CPU:  212.458 msec
+CL:  0.188608 msec
+CUDA:  63.1511 msec
+CPU:  168.786 msec
+CL:  0.191206 msec
+CUDA:  57.062 msec
+--------------------------------
+CPU:  88.6366 msec
+	OpenCL device is:  OpenCL 1.2 pocl HSTR: CUDA-sm_61
+	OpenCL drievr version:  1.2
+	WorkGroupSize:  1024
+[ WARN:0] Detected OpenCL cache directory for other version of OpenCL device. We assume that these directories are obsolete after OpenCL runtime/drivers upgrade.
+[ WARN:0] Trying to remove these directories...
+[ WARN:0] - NVIDIA_Corporation--GeForce_GTX_1050--410_79
+[ WARN:0] Note: You can disable this behavior via this option: OPENCV_OPENCL_CACHE_CLEANUP=0
+[ WARN:0] Removed: /home/az/.cache/opencv/4.0-dev/opencl_cache/NVIDIA_Corporation--GeForce_GTX_1050--410_79
+CL:  135.501 msec
+CUDA:  111.67 msec
+CPU:  85.904 msec
+CL:  18.7695 msec
+CUDA:  61.5336 msec
+CPU:  82.9085 msec
+CL:  14.918 msec
+CUDA:  63.9352 msec
+---------------------------------------
+CPU:  89.4261 msec
+	OpenCL device is:  OpenCL 1.2 beignet 1.3
+	OpenCL drievr version:  1.3
+	WorkGroupSize:  512
+CL:  10.8994 msec
+CUDA:  96.6232 msec
+CPU:  86.0466 msec
+CL:  0.186132 msec
+CUDA:  55.6645 msec
+CPU:  87.958 msec
+CL:  0.107341 msec
+CUDA:  56.6289 msec

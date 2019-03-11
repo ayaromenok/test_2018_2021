@@ -12,7 +12,8 @@ int main(int, char**)
     UMat frame;
     cout << "Opening camera..." << endl;
 
-    VideoCapture capture(" rkisp device=/dev/video0 sensor-id=1 io-mode=4 path-iqf=/etc/cam_iq/rk-ov4689.xml ! video/x-raw,format=NV12,width=672,height=380,framerate=60/1 ! videoconvert ! appsink",CAP_GSTREAMER);
+    //VideoCapture capture(" rkisp device=/dev/video0 sensor-id=1 io-mode=4 path-iqf=/etc/cam_iq/rk-ov4689.xml ! video/x-raw,format=NV12,width=672,height=380,framerate=60/1 ! videoconvert ! appsink",CAP_GSTREAMER);
+    VideoCapture capture(" rkisp device=/dev/video0 io-mode=4 ! video/x-raw,format=NV12,width=1280,height=720,framerate=60/1 ! videoconvert ! appsink",CAP_GSTREAMER);
 
     if (!capture.isOpened())
     {

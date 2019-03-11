@@ -9,10 +9,10 @@ using std::cout; using std::cerr; using std::endl;
 
 int main(int, char**)
 {
-    Mat frame;
+    UMat frame;
     cout << "Opening camera..." << endl;
 
-    VideoCapture capture(" rkisp device=/dev/video0 sensor-id=1 io-mode=4 path-iqf=/etc/cam_iq/rk-ov4689.xml ! video/x-raw,format=NV12,width=672,height=380,framerate=30/1 ! videoconvert ! appsink",CAP_GSTREAMER);
+    VideoCapture capture(" rkisp device=/dev/video0 sensor-id=1 io-mode=4 path-iqf=/etc/cam_iq/rk-ov4689.xml ! video/x-raw,format=NV12,width=672,height=380,framerate=60/1 ! videoconvert ! appsink",CAP_GSTREAMER);
 
     if (!capture.isOpened())
     {
@@ -27,7 +27,7 @@ int main(int, char**)
     cout << endl << "Press 'ESC' to quit, 'space' to toggle frame processing" << endl;
     cout << endl << "Start grabbing..." << endl;
 
-    size_t nFrames = 0;
+    int64 nFrames = 0;
     bool enableProcessing = false;
     int64 t0 = cv::getTickCount();
     int64 processingTime = 0;
@@ -44,7 +44,7 @@ int main(int, char**)
         {
             const int N = 10;
             int64 t1 = cv::getTickCount();
-            cout << "Frames captured: " << cv::format("%5lld", (long long int)nFrames)
+            cout << "Frames captured: " << cv::format("%9lld", (long long int)nFrames)
                  << "    Average FPS: " << cv::format("%9.1f", (double)getTickFrequency() * N / (t1 - t0))
                  << "    Average time per frame: " << cv::format("%9.2f ms", (double)(t1 - t0) * 1000.0f / (N * getTickFrequency()))
                  << "    Average processing time: " << cv::format("%9.2f ms", (double)(processingTime) * 1000.0f / (N * getTickFrequency()))
@@ -59,8 +59,8 @@ int main(int, char**)
         else
         {
             int64 tp0 = cv::getTickCount();
-            Mat processed;
-            cv::Canny(frame, processed, 400, 1000, 5);
+            UMat processed;
+            cv::Canny(frame, processed, 400, 1000, 3);
             processingTime += cv::getTickCount() - tp0;
             imshow("Frame - pro", processed);
         }

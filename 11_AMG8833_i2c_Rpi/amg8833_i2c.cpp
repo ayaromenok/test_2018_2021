@@ -2,6 +2,8 @@
 #include <errno.h>
 #include <wiringPiI2C.h>
 
+#include "qamg8833.h"
+
 using namespace std;
 
 int main()

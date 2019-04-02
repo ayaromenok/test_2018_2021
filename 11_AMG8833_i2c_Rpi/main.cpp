@@ -1,11 +1,11 @@
 #include <QCoreApplication>
-#include "qamg8822.h"
+#include "qamg8833.h"
 
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 
-    QAMG8822 ir;
+    QAMG8833 ir;
 
     ir.initI2C();
     ir.initIR();

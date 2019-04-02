@@ -16,6 +16,10 @@ public:
 signals:
 
 public slots:
+
+private:
+    int 		fd_;
+    int			rslt_;
 };
 
 #endif // QAMG8833_H

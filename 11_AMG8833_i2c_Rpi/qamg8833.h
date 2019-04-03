@@ -17,6 +17,8 @@ signals:
 
 public slots:
 
+private slots:
+    float signed12bit2float(int value);
 private:
     int 		fd_;
     int			rslt_;

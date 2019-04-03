@@ -13,7 +13,7 @@ QAMG8833::QAMG8833(QObject *parent) : QObject(parent)
     dumpData();
     timer_ = new QTimer(this);
     connect (timer_, SIGNAL(timeout()), this, SLOT(update()));
-    timer_->start(1000);
+    timer_->start(100);
 }
 
 QAMG8833::~QAMG8833()
@@ -54,7 +54,7 @@ QAMG8833::initIR()
     qDebug() << "writing 0x00 reg" << rslt_;
     rslt_ = wiringPiI2CWriteReg8(fd_, 0x01, 0x3F);	//INITIAL_RESET
     qDebug() << "writing 0x01 reg" << rslt_;
-    rslt_ = wiringPiI2CWriteReg8(fd_, 0x02, 0x01);  	//set 10FPS
+    rslt_ = wiringPiI2CWriteReg8(fd_, 0x02, 0x00);  	//set 10FPS: 0x00, 1fps: 0x01
     qDebug() << "writing 0x02 reg" << rslt_;
     rslt_ = wiringPiI2CWriteReg8(fd_, 0x03, 0x00);	//disable interrups
     qDebug() << "writing 0x03 reg" << rslt_;

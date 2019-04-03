@@ -64,23 +64,38 @@ QAMG8833::initIR()
 void
 QAMG8833::dumpData()
 {
-    int raw;
+    int raw, adr;
+    QVector<float> rs;
+
     qDebug() << __PRETTY_FUNCTION__;
 //    rslt_ = wiringPiI2CReadReg8(fd_, 0x0F);
     raw = (wiringPiI2CReadReg8(fd_, 0x0F) <<8) | wiringPiI2CReadReg8(fd_, 0x0E);
     qDebug() << "reading 0x0F/0x0E regs: sensor temp" << signed12bit2float(raw)*0.0625;
+    
+    for (int i=0; i<8; i++) {
+	for (int j=0; j<8; j++) {
+		adr = 0x80+(i*8+j)*2;
+	        rslt_ = wiringPiI2CWriteReg8(fd_, adr, 0);
+		rslt_ = wiringPiI2CReadReg16(fd_, adr);
+		rs.append(signed12bit2float(rslt_)*0.25);
+	}
+    }
+    qDebug() << "results:" << rs.length();
 
-    rslt_ = wiringPiI2CWriteReg8(fd_, 0x80, 0);
-    qDebug() << "writing 0x80 reg" << rslt_;
-    rslt_ = wiringPiI2CReadReg16(fd_, 0x80);
-    qDebug() << "reading 0x80 reg" << rslt_;
-    qDebug() << "temp" << signed12bit2float(rslt_)*0.25;
+    for (int k=0; k<8; k++) {
+	qDebug() << rs.at(k*8)<<"\t"<<rs.at(k*8+1)<<"\t"<<rs.at(k*8+2)<<"\t"<<rs.at(k*8+3)<<"\t"<<rs.at(k*8+4)<<"\t"<< rs.at(k*8+5)<<"\t"<< rs.at(k*8+6)<<"\t"<< rs.at(k*8+7); 
+    }
+//    rslt_ = wiringPiI2CWriteReg8(fd_, 0x80, 0);
+//    qDebug() << "writing 0x80 reg" << rslt_;
+//    rslt_ = wiringPiI2CReadReg16(fd_, 0x80);
+//    qDebug() << "reading 0x80 reg" << rslt_;
+//    qDebug() << "temp" << signed12bit2float(rslt_)*0.25;
 }
 
 float
 QAMG8833::signed12bit2float(int value)
 {
-    qDebug() << __PRETTY_FUNCTION__;
+    //qDebug() << __PRETTY_FUNCTION__;
 
     int absValue = (value & 0x7FF);
     if (value & 0x8000){

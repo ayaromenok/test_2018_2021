@@ -1,6 +1,6 @@
 # Copyright(C) 2018 Andrey Yaromenok, ayaromenok@gmail.com
 # MIT License - https://github.com/ayaromenok/test/blob/master/LICENSE
-QT += widgets
+QT += core gui widgets
 CONFIG += c++11
 
 DEFINES += QT_DEPRECATED_WARNINGS
@@ -14,6 +14,7 @@ SOURCES += \
     qtestobject.cpp
 
 RESOURCES += \
+    resources.qrc
 
 
 # Default rules for deployment.

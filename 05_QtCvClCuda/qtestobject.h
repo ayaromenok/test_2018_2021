@@ -1,26 +1,22 @@
 // Copyright(C) 2018 Andrey Yaromenok, ayaromenok@gmail.com
 // MIT License - https://github.com/ayaromenok/test/blob/master/LICENSE
 
-#ifndef QTESTOBJECT_H
-#define QTESTOBJECT_H
+#ifndef NQTESTOBJECT_H
+#define NQTESTOBJECT_H
 
-#include <QObject>
-
-class QTestObject : public QObject
+class NqTestObject
 {
-    Q_OBJECT
+
 public:
-    explicit QTestObject(QObject *parent = nullptr);
+    NqTestObject();
     void testCPU();
     void testCL();
     void testCUDA();
     void getCpuInfo();
     void getClInfo();
     void getCudaInfo();
-signals:
 
-public slots:
-
+private:
 };
 
-#endif // QTESTOBJECT_H
+#endif // NQTESTOBJECT_H

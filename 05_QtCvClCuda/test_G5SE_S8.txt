@@ -1,0 +1,30 @@
+05_QtCv
+4kx4k
+
+Samsung S8
+Exynos 9 Octa 8895  
+CPU: 4xM2 @ 2314MHz
+GPU: Mali-G71 MP20 @ 546MHz / 375gflop fp32
+Mem: 4GB/1794 MHz (28.7 GB/s)
+
+Lg G5 SE
+Snapdragon 652/MSM8976 
+CPU: 4xA72 @ 1800MHz
+GPU Adreno-510 @ 600MHz/ 180 gflop fp16
+Mem  3Gb/933MHz (14.9 GB/s))   
+
+        S8      S8 full     G5      G5 full      
+CPU     283.2   322/2       415.4   429.3
+GPU     74.8    69.1        712.2   668.9
+
+
+
+I lib05_QtCvClCuda.so: CL name Mali-G71
+I lib05_QtCvClCuda.so: CL version OpenCL 2.0 v1.r9p0-01rel0.2498e584901afb9257be0d365ada85fa
+I lib05_QtCvClCuda.so: CL workGroupSize 384
+I lib05_QtCvClCuda.so: CL global memory 2147483648
+
+I lib05_QtCvClCuda.so: CL name QUALCOMM Adreno(TM)
+I lib05_QtCvClCuda.so: CL version OpenCL 2.0 Adreno(TM) 510
+I lib05_QtCvClCuda.so: CL workGroupSize 1024
+I lib05_QtCvClCuda.so: CL global memory 1487912960

@@ -6,7 +6,7 @@ CVLINUX = /usr/local
 CVANDROID = /opt/cvAndroid/3/sdk/native
 CVANDROID_BIFROST = /opt/cvAndroid/bifrost
 CVANDROID_STATIC = /home/az/sdk/src/opencv/build/AndroidArm32/install/sdk/native
-CVANDROID_DYNAMIC = /home/az/sdk/src/opencv/build/AndroidArm32/install/sdk/native
+CVANDROID_DYNAMIC = /home/az/sdk/src/opencv/build/AndroidArm32r10eGcc/install/sdk/native
 CVMACX = /usr/local
 CVIOS = /Users/az/sdk/opencv/iOS
 CVWIN = C:\sdk\opencv
@@ -51,13 +51,14 @@ android {
         message("        opencv: Dynamic/OpenCL")
         LIBS += -L$${CVANDROID_DYNAMIC}/libs/armeabi-v7a
         LIBS += -lopencv_core -lopencv_videoio -lopencv_imgproc
-        LIBS += -lopencv_imgcodecs
+        LIBS += -lopencv_imgcodecs -lopencv_highgui
 
        ANDROID_EXTRA_LIBS = \
             $${CVANDROID_DYNAMIC}/libs/armeabi-v7a/libopencv_core.so \
             $${CVANDROID_DYNAMIC}/libs/armeabi-v7a/libopencv_videoio.so \
             $${CVANDROID_DYNAMIC}/libs/armeabi-v7a/libopencv_imgproc.so \
-            $${CVANDROID_DYNAMIC}/libs/armeabi-v7a/libopencv_imgcodecs.so
+            $${CVANDROID_DYNAMIC}/libs/armeabi-v7a/libopencv_imgcodecs.so \
+            $${CVANDROID_DYNAMIC}/libs/armeabi-v7a/libopencv_highgui.so
     }
 }
 

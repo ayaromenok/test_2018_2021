@@ -12,11 +12,16 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
     qDebug() << "QtCvClCuda";
-    QTestObject to;
+    NqTestObject to;
 
+    to.getClInfo();
     to.testCPU();
     to.testCL();
-    to.testCUDA();
+    to.testCPU();
+    to.testCL();
+    to.testCPU();
+    to.testCL();
+    //to.testCUDA();
 
     return app.exec();
 }

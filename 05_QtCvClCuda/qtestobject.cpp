@@ -2,22 +2,27 @@
 // MIT License - https://github.com/ayaromenok/test/blob/master/LICENSE
 #include "qtestobject.h"
 #include <QDebug>
+#include <QImage>
 #include <opencv2/opencv.hpp>
 #include <opencv2/core/opencl/opencl_info.hpp>
+#include <opencv2/imgproc.hpp>
 
-QTestObject::QTestObject(QObject *parent) : QObject(parent)
+NqTestObject::NqTestObject(QObject *parent) : QObject(parent)
 {
 
 }
 
 void
-QTestObject::testCPU(){
+NqTestObject::testCPU(){
     qInfo() << __FUNCTION__;
-    getCpuInfo();
+ //   getCpuInfo();
     cv::Mat img, gray;
     cv::TickMeter pc;
 
-    cv::imread("lena.jpg", cv::IMREAD_COLOR).copyTo(img);
+    QImage qImg;
+    if (qImg.load(":/res/lena4k.jpg","jpg")){
+        img = cv::Mat(cv::Size(qImg.width(), qImg.height()), CV_8UC4, qImg.bits());
+    }
     if(img.ptr()){
         qInfo() << "image" << img.cols << "x" << img.rows;
     } else {
@@ -34,15 +39,20 @@ QTestObject::testCPU(){
 }
 
 void
-QTestObject::testCL(){
+NqTestObject::testCL(){
     qInfo() << __FUNCTION__;
-    getClInfo();
-    qInfo() << __FUNCTION__;
-    getCpuInfo();
+
     cv::UMat img, gray;
     cv::TickMeter pc;
 
-    cv::imread("lena.jpg", cv::IMREAD_COLOR).copyTo(img);
+    QImage qImg;
+    if (qImg.load(":/res/lena4k.jpg","jpg")){
+        cv::Mat imgIn;
+        imgIn = cv::Mat(cv::Size(qImg.width(), qImg.height()), CV_8UC4, qImg.bits());
+        imgIn.copyTo(img);
+    }
+
+    //cv::imread("lena.jpg", cv::IMREAD_COLOR).copyTo(img);
     if(img.dims > 0){
         qInfo() << "image" << img.cols << "x" << img.rows;
     } else {
@@ -59,18 +69,18 @@ QTestObject::testCL(){
 }
 
 void
-QTestObject::testCUDA(){
+NqTestObject::testCUDA(){
     qInfo() << __FUNCTION__;
     getCudaInfo();
 }
 
 void
-QTestObject::getCpuInfo(){
+NqTestObject::getCpuInfo(){
     qInfo() << __FUNCTION__;
 }
 
 void
-QTestObject::getClInfo(){
+NqTestObject::getClInfo(){
     qInfo() << __FUNCTION__;
     cv::ocl::Context ctx = cv::ocl::Context::getDefault();
 
@@ -94,6 +104,6 @@ QTestObject::getClInfo(){
 }
 
 void
-QTestObject::getCudaInfo(){
+NqTestObject::getCudaInfo(){
     qInfo() << __FUNCTION__;
 }

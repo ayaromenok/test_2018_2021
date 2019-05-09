@@ -1,0 +1,91 @@
+ioctl: VIDIOC_ENUM_FMT
+	Index       : 0
+	Type        : Video Capture Multiplanar
+	Pixel Format: 'YUYV'
+	Name        : YUYV 4:2:2
+
+	Index       : 1
+	Type        : Video Capture Multiplanar
+	Pixel Format: 'YVYU'
+	Name        : YVYU 4:2:2
+
+	Index       : 2
+	Type        : Video Capture Multiplanar
+	Pixel Format: 'VYUY'
+	Name        : VYUY 4:2:2
+
+	Index       : 3
+	Type        : Video Capture Multiplanar
+	Pixel Format: '422P'
+	Name        : Planar YVU 4:2:2
+
+	Index       : 4
+	Type        : Video Capture Multiplanar
+	Pixel Format: 'NV16'
+	Name        : Y/CbCr 4:2:2
+
+	Index       : 5
+	Type        : Video Capture Multiplanar
+	Pixel Format: 'NV61'
+	Name        : Y/CrCb 4:2:2
+
+	Index       : 6
+	Type        : Video Capture Multiplanar
+	Pixel Format: 'YM61'
+	Name        : Planar YVU 4:2:2 (N-C)
+
+	Index       : 7
+	Type        : Video Capture Multiplanar
+	Pixel Format: 'NV21'
+	Name        : Y/CrCb 4:2:0
+
+	Index       : 8
+	Type        : Video Capture Multiplanar
+	Pixel Format: 'NV12'
+	Name        : Y/CbCr 4:2:0
+
+	Index       : 9
+	Type        : Video Capture Multiplanar
+	Pixel Format: 'NM21'
+	Name        : Y/CrCb 4:2:0 (N-C)
+
+	Index       : 10
+	Type        : Video Capture Multiplanar
+	Pixel Format: 'NM12'
+	Name        : Y/CbCr 4:2:0 (N-C)
+
+	Index       : 11
+	Type        : Video Capture Multiplanar
+	Pixel Format: 'YU12'
+	Name        : Planar YUV 4:2:0
+
+	Index       : 12
+	Type        : Video Capture Multiplanar
+	Pixel Format: 'YV12'
+	Name        : Planar YVU 4:2:0
+
+	Index       : 13
+	Type        : Video Capture Multiplanar
+	Pixel Format: 'YM24'
+	Name        : Planar YUV 4:4:4 (N-C)
+
+	Index       : 14
+	Type        : Video Capture Multiplanar
+	Pixel Format: 'GREY'
+	Name        : 8-bit Greyscale
+
+	Index       : 15
+	Type        : Video Capture Multiplanar
+	Pixel Format: 'RGB3'
+	Name        : 24-bit RGB 8-8-8
+
+	Index       : 16
+	Type        : Video Capture Multiplanar
+	Pixel Format: 'RGBP'
+	Name        : 16-bit RGB 5-6-5
+
+	Index       : 17
+	Type        : Video Capture Multiplanar
+	Pixel Format: 'BGRH'
+	Name        : 18-bit BGRX 6-6-6-14
+

@@ -4,7 +4,7 @@
 int main(int, char**)
 {
     cv::Mat frame;
-    cv::VideoCapture cap("rkcamsrc device=/dev/video0 io-mode=4 ! video/x-raw, format=NV12,width=640,height=480,framerate=30/1 ! videoconvert ! appsink", cv::CAP_GSTREAMER);
+    cv::VideoCapture cap("rkcamsrc device=/dev/video0 io-mode=4 isp-mode=2A tuning-xml-path=../cam_iq/OV5647.xml ! video/x-raw, format=NV12,width=640,height=480,framerate=15/1 ! videoconvert ! appsink", cv::CAP_GSTREAMER);
 
     if (!cap.isOpened()) {
         std::cerr << "ERROR: Can't initialize camera capture" << std::endl;

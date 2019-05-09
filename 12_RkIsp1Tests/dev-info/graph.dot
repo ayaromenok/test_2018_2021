@@ -1,0 +1,16 @@
+digraph board {
+	rankdir=TB
+	n00000001 [label="{{<port0> 0 | <port1> 1} | rkisp1-isp-subdev\n/dev/v4l-subdev0 | {<port2> 2 | <port3> 3}}", shape=Mrecord, style=filled, fillcolor=green]
+	n00000001:port2 -> n00000002
+	n00000001:port2 -> n00000003
+	n00000001:port3 -> n00000004
+	n00000002 [label="rkisp1_selfpath\n/dev/video0", shape=box, style=filled, fillcolor=yellow]
+	n00000003 [label="rkisp1_mainpath\n/dev/video1", shape=box, style=filled, fillcolor=yellow]
+	n00000004 [label="rkisp1-statistics\n/dev/video2", shape=box, style=filled, fillcolor=yellow]
+	n00000005 [label="rkisp1-input-params\n/dev/video3", shape=box, style=filled, fillcolor=yellow]
+	n00000005 -> n00000001:port1
+	n00000006 [label="{{<port0> 0} | rockchip-sy-mipi-dphy\n/dev/v4l-subdev1 | {<port1> 1}}", shape=Mrecord, style=filled, fillcolor=green]
+	n00000006:port1 -> n00000001:port0
+	n00000007 [label="{{} | ov5647 2-0036\n/dev/v4l-subdev2 | {<port0> 0}}", shape=Mrecord, style=filled, fillcolor=green]
+	n00000007:port0 -> n00000006:port0
+}

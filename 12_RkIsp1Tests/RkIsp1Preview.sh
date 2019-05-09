@@ -5,4 +5,4 @@ export DISPLAY=:0.0
 # isp-mode=2A works only with camiq
 #2592x1944 not supported - only half: 1296x972
 #gst-launch-1.0 rkcamsrc device=/dev/video0  io-mode=4  ! video/x-raw,format=NV12,width=640,height=480,framerate=60/1 ! rkximagesink
-gst-launch-1.0 rkcamsrc device=/dev/video0  io-mode=4  ! video/x-raw,format=NV12,width=1296,height=972,framerate=30/1 ! rkximagesink
+gst-launch-1.0 rkcamsrc isp-mode=2A tuning-xml-path=./cam_iq/OV5647.xml device=/dev/video0  io-mode=4  ! video/x-raw,format=NV12,width=1296,height=972,framerate=30/1 ! rkximagesink

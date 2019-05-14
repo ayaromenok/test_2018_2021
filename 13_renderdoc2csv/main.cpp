@@ -19,10 +19,10 @@ bool parseRdCsv(QString &fName)
     bool    result = false;
     QFile file(fName);
     QStringList v;
-    QStringList vt;
+    QStringList vt0;
     QStringList f;
 
-    if (file.open(QIODevice::ReadOnly |QIODevice::Text)) {
+    if (file.open(QFile::ReadOnly | QFile::Text)) {
         QTextStream     tsIn(&file);
         QString         line;
 
@@ -32,14 +32,42 @@ bool parseRdCsv(QString &fName)
         if (lsHeader.at(0).contains("VTX") && lsHeader.at(1).contains("IDX") &&
                 lsHeader.at(2).contains("SV_Position.x")
                 && lsHeader.at(6).contains("TEXCOORD0.x")) {
+            QFile fileOut(QString(fName.left(fName.indexOf(".csv"))+".obj"));
+
             qInfo() << "file" << fName << "good RenderDoc/CSV file";
             while(tsIn.readLineInto(&line)) {
                 QStringList list(line.simplified().split(", "));
 
-                for (int i=0; i<list.length();++i) {
-                    qInfo() << i << list.at(i) << list.at(i).toLocal8Bit().constData();
-                }
+                v.append(QString("v "+list.at(2)+" "+list.at(3)+" "+list.at(4) + "\n"));
+                vt0.append(QString("vt "+list.at(6)+" "+list.at(7))+"\n");
+
+
+//                for (int i=0; i<list.length();++i) {
+//                    qInfo() << i << list.at(i) << list.at(i).toLocal8Bit().constData();
+//                }
             }
+            file.close();
+
+            if (fileOut.open(QFile::WriteOnly | QFile::Text)){
+                QTextStream tsOut(&fileOut);
+                tsOut << "#RenderDoc CSV 2 Obj\n";
+                tsOut << "#Vertecis\n\n";
+                for (int i=0; i<v.length(); i++) {
+                    tsOut << v.at(i);
+                }
+                tsOut << "#Texture Coorditanes 0\n\n";
+                for (int i=0; i<vt0.length(); i++) {
+                    tsOut << vt0.at(i);
+                }
+                tsOut << "#Faces\n\n";
+                int fCount = v.length()/3;
+                for (int i=0; i<fCount; i++){
+                    tsOut << "f " << i*3+1 << "/" << i*3+2 << "/" << i*3+3 << "\n";
+                }
+                tsOut.flush();
+                fileOut.close();
+            }
+
         } else {
             qWarning() << "file" <<fName << "is not a RenderDoc/CSV, exiting...";
             exit(-4);

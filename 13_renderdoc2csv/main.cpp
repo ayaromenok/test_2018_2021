@@ -77,7 +77,7 @@ bool parseRdCsv(QString &fName)
             exit(-4);
         }
     } else {
-        qWarning() << "file" <<fName << "cant be open, exiting...";
+        qWarning() << "file" <<fName << "can't be open, exiting...";
         exit(-3);
     }
 
@@ -89,7 +89,7 @@ int main(int argc, char *argv[])
     QCoreApplication a(argc, argv);
 
     if (argc < 2) {
-        qWarning() << "please provide a input file, exitin";
+        qWarning() << "please provide a input file, exiting...";
         exit(-1);
     }
 

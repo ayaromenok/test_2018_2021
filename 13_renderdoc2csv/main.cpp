@@ -6,7 +6,7 @@
  * SV_Position.x, SV_Position.y, SV_Position.z, SV_Position.w,
  * TEXCOORD0.x, TEXCOORD0.y, TEXCOORD4,
  * TEXCOORD1.x, TEXCOORD1.y, TEXCOORD1.z,
- * TEXCOORD2.x, TEXCOORD2.y, TEXCOORD2.z,
+ * TEXCOORD2.x, TEXCOORD2.y, TEXCOORD2.z,           //look like Normal
  * TEXCOORD3.x, TEXCOORD3.y, TEXCOORD3.z,
  * TEXCOORD5.x, TEXCOORD5.y, TEXCOORD5.z, TEXCOORD5.w,
  * TEXCOORD6.x, TEXCOORD6.y, TEXCOORD6.z, TEXCOORD6.w,
@@ -19,7 +19,10 @@ bool parseRdCsv(QString &fName)
     bool    result = false;
     QFile file(fName);
     QStringList v;
+    QStringList n;
     QStringList vt0;
+    QStringList ids;
+    QVector<int> idx;
     QStringList f;
 
     if (file.open(QFile::ReadOnly | QFile::Text)) {
@@ -35,35 +38,80 @@ bool parseRdCsv(QString &fName)
             QFile fileOut(QString(fName.left(fName.indexOf(".csv"))+".obj"));
 
             qInfo() << "file" << fName << "good RenderDoc/CSV file";
+            int cntThree=0;
+            QString id;
             while(tsIn.readLineInto(&line)) {
                 QStringList list(line.simplified().split(", "));
 
-                v.append(QString("v "+list.at(2)+" "+list.at(3)+" "+list.at(4) + "\n"));
-                vt0.append(QString("vt "+list.at(6)+" "+list.at(7))+"\n");
+                idx.append(list.at(1).toInt());
+                QString tmpV("v "+list.at(2)+" "+list.at(3)+" "+list.at(4) + "\n");
+                QString tmpN("n "+list.at(9)+" "+list.at(10)+" "+list.at(11) + "\n");
+                QString tmpVt0("vt "+list.at(6)+" "+list.at(7)+"\n");
 
+                if (!v.contains(tmpV)){
+                    v.append(tmpV);
+                }
+                if(!vt0.contains(tmpN)){
+                    n.append(tmpN);
+                }
+                if(!vt0.contains(tmpVt0)){
+                    vt0.append(tmpVt0);
+                }
+                if (cntThree == 0){
+                    id.clear();
+                    id.append("f ");
+                    id.append(list.at(1));
+                    id.append(" ");
+                    cntThree++;
+                } else if (cntThree == 1){
+                    id.append(list.at(1));
+                    id.append(" ");
+                    cntThree++;
+                } else {
+                    id.append(list.at(1));
+                    id.append("\n");
+                    ids.append(id);
+                    cntThree = 0;
+                }
 
 //                for (int i=0; i<list.length();++i) {
 //                    qInfo() << i << list.at(i) << list.at(i).toLocal8Bit().constData();
 //                }
             }
+            qInfo() << "idx:" << idx.length() << "v:" << v.length() << "vt:" << vt0.length();
+            auto vtxCount = std::max_element(std::begin(idx), std::end(idx));
+            qInfo() << "max elem" << *vtxCount;
             file.close();
+
+
 
             if (fileOut.open(QFile::WriteOnly | QFile::Text)){
                 QTextStream tsOut(&fileOut);
-                tsOut << "#RenderDoc CSV 2 Obj\n";
-                tsOut << "#Vertecis\n\n";
+                //tsOut << "# RenderDoc CSV 2 Obj\n";
+                //tsOut << "\n# Vertecis\n";
+
                 for (int i=0; i<v.length(); i++) {
                     tsOut << v.at(i);
                 }
-                tsOut << "#Texture Coorditanes 0\n\n";
+
+                //tsOut << "\n\n# Texture Coorditanes 0\n";
+                for (int i=0; i<n.length(); i++) {
+                    tsOut << n.at(i);
+                }
+
+                //tsOut << "\n\n# Texture Coorditanes 0\n";
                 for (int i=0; i<vt0.length(); i++) {
                     tsOut << vt0.at(i);
                 }
-                tsOut << "#Faces\n\n";
-                int fCount = v.length()/3;
-                for (int i=0; i<fCount; i++){
-                    tsOut << "f " << i*3+1 << "/" << i*3+2 << "/" << i*3+3 << "\n";
+                //tsOut << "\n\n# Faces\n";
+                for (int i=0; i<ids.length(); i++) {
+                    tsOut << ids.at(i);
                 }
+//                int fCount = v.length()/3;
+//                for (int i=0; i<fCount; i++){
+//                    tsOut << "f " << i*3+1 << "/" << i*3+2 << "/" << i*3+3 << "\n";
+//                }
+                //tsOut << "# the End\n";
                 tsOut.flush();
                 fileOut.close();
             }

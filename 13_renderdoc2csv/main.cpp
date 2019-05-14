@@ -1,6 +1,6 @@
 #include <QCoreApplication>
 #include <QtCore>
-/*
+/* renderdoc transformed CSV
  * VTX,
  * IDX,
  * SV_Position.x, SV_Position.y, SV_Position.z, SV_Position.w,
@@ -13,6 +13,19 @@
  * TEXCOORD7.x, TEXCOORD7.y, TEXCOORD7.z,
  * TEXCOORD8.x, TEXCOORD8.y, TEXCOORD8.z, TEXCOORD8.w
  */
+
+/*  renderdoc original CSV
+    VTX,
+    IDX,
+    POSITION0.x, POSITION0.y, POSITION0.z,
+    NORMAL0,
+    TEXCOORD0.x, TEXCOORD0.y,
+    TANGENT0, BINORMAL0,
+    TEXCOORD4.x, TEXCOORD4.y, TEXCOORD4.z, TEXCOORD4.w,
+    TEXCOORD5.x, TEXCOORD5.y, TEXCOORD5.z, TEXCOORD5.w,
+    TEXCOORD6.x, TEXCOORD6.y, TEXCOORD6.z, TEXCOORD6.w,
+    TEXCOORD7.x, TEXCOORD7.y, TEXCOORD7.z, TEXCOORD7.w
+*/
 bool parseRdCsv(QString &fName)
 {
     qInfo() << __PRETTY_FUNCTION__ << fName;

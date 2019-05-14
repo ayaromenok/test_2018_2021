@@ -50,19 +50,23 @@ bool parseRdCsv(QString &fName)
 
             if (fileOut.open(QFile::WriteOnly | QFile::Text)){
                 QTextStream tsOut(&fileOut);
-                tsOut << "#RenderDoc CSV 2 Obj\n";
-                tsOut << "#Vertecis\n\n";
+                tsOut << "# RenderDoc CSV 2 Obj\n";
+                tsOut << "g default\n";
+                tsOut << "\n# Vertecis\n";
                 for (int i=0; i<v.length(); i++) {
                     tsOut << v.at(i);
                 }
-                tsOut << "#Texture Coorditanes 0\n\n";
+                tsOut << "\n# Texture Coorditanes 0\n";
                 for (int i=0; i<vt0.length(); i++) {
                     tsOut << vt0.at(i);
                 }
-                tsOut << "#Faces\n\n";
+                tsOut << "\n# Faces\n";
                 int fCount = v.length()/3;
+
                 for (int i=0; i<fCount; i++){
-                    tsOut << "f " << i*3+1 << "/" << i*3+2 << "/" << i*3+3 << "\n";
+                    tsOut << "f " << (i*3+1) << "/"  << (i*3+1) <<" "
+                          << i*3+2 << "/" << i*3+2 << " "
+                          << i*3+3 << "/" << i*3+3<<"\n";
                 }
                 tsOut.flush();
                 fileOut.close();

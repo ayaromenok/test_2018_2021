@@ -42,22 +42,24 @@ bool parseRdCsv(QString &fName)
         tsIn.readLineInto(&line);
         //sometime dual space used to separarte values, so remove it first
         QStringList lsHeader(line.simplified().split(" "));
-        if (lsHeader.at(0).contains("VTX") && lsHeader.at(1).contains("IDX") &&
-                lsHeader.at(2).contains("SV_Position.x")
-                && lsHeader.at(6).contains("TEXCOORD0.x")) {
+        if ( lsHeader.at(0).contains("VTX") &&
+             lsHeader.at(1).contains("IDX") &&
+             lsHeader.at(6).contains("TEXCOORD0.x")
+             ) {
             QFile fileOut(QString(fName.left(fName.indexOf(".csv"))+".obj"));
 
-            qInfo() << "file" << fName << "good RenderDoc/CSV file";
+            if (lsHeader.at(2).contains("SV_Position.x")) {
+               qInfo() << "file" << fName << "good RenderDoc/CSV tranformed model";
+            } else {
+              qInfo() << "file" << fName << "good RenderDoc/CSV orininal model";
+            }
+
+
             while(tsIn.readLineInto(&line)) {
                 QStringList list(line.simplified().split(", "));
 
                 v.append(QString("v "+list.at(2)+" "+list.at(3)+" "+list.at(4) + "\n"));
                 vt0.append(QString("vt "+list.at(6)+" "+list.at(7))+"\n");
-
-
-//                for (int i=0; i<list.length();++i) {
-//                    qInfo() << i << list.at(i) << list.at(i).toLocal8Bit().constData();
-//                }
             }
             file.close();
 

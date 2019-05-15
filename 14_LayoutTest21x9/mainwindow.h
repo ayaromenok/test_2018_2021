@@ -13,6 +13,8 @@ public:
 private:
     void createMenus();
     void createToolbars();
+    void createDockWidgets();
+    void createCentralWidget();
 };
 
 #endif // MAINWINDOW_H

@@ -11,12 +11,17 @@ MainWindow::MainWindow(QWidget *parent)
     createDockWidgets();
     createCentralWidget();
     statusBar()->showMessage(tr("StatusBar message"));
+    _settings = new QSettings(this);
+    restoreGeometry(_settings->value("geometry").toByteArray());
+    restoreState(_settings->value("windowState").toByteArray());
     //restoreState();
 }
 
 MainWindow::~MainWindow()
 {
     //saveState();
+    _settings->setValue("geometry", saveGeometry());
+    _settings->setValue("windowState", saveState());
 }
 
 void

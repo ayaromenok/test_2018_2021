@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+class QSettings;
 
 class MainWindow : public QMainWindow
 {
@@ -15,6 +16,8 @@ private:
     void createToolbars();
     void createDockWidgets();
     void createCentralWidget();
+
+    QSettings   *_settings;
 };
 
 #endif // MAINWINDOW_H

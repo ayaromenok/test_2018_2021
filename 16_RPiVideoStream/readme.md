@@ -11,4 +11,5 @@ Send videostream from Rpi(stereo in particular) to another devboards with suitab
 
 	- runVlc.sh/PC - looks like issues with some keyframes
 	- runVlc.sh/Tegra - crash of vlc/cvlc
-	- runMJpegStreamer - OK. can handle many hosts
+	- runMJpegStreamer - OK in browser. can handle many hosts.
+		- added OpenCV version. any url should contain ".mjpg" prefix

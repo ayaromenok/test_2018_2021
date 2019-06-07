@@ -66,7 +66,9 @@ bool parseRdCsv(QString &fName)
             if (fileOut.open(QFile::WriteOnly | QFile::Text)){
                 QTextStream tsOut(&fileOut);
                 tsOut << "# RenderDoc CSV 2 Obj\n";
-                tsOut << "g default\n";
+                //tsOut << "g default\n";
+                tsOut << "mtllib untitled.mtl\n";
+                tsOut << "o Object\n";
                 tsOut << "\n# Vertecis\n";
                 for (int i=0; i<v.length(); i++) {
                     tsOut << v.at(i);
@@ -75,6 +77,8 @@ bool parseRdCsv(QString &fName)
                 for (int i=0; i<vt0.length(); i++) {
                     tsOut << vt0.at(i);
                 }
+                tsOut << "usemtl Material\n";
+                tsOut << "s off\n";
                 tsOut << "\n# Faces\n";
                 int fCount = v.length()/3;
 

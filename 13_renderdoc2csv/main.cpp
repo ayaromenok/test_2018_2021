@@ -47,6 +47,7 @@ bool parseRdCsv(QString &fName)
              lsHeader.at(6).contains("TEXCOORD0.x")
              ) {
             QFile fileOut(QString(fName.left(fName.indexOf(".csv"))+".obj"));
+            QFile fileOutMtl(QString(fName.left(fName.indexOf(".csv"))+".mtl"));
 
             if (lsHeader.at(2).contains("SV_Position.x")) {
                qInfo() << "file" << fName << "good RenderDoc/CSV tranformed model";
@@ -65,11 +66,11 @@ bool parseRdCsv(QString &fName)
 
             if (fileOut.open(QFile::WriteOnly | QFile::Text)){
                 QTextStream tsOut(&fileOut);
-                tsOut << "# RenderDoc CSV 2 Obj\n";
+                tsOut << "# RenderDoc CSV 2 Obj\n\n";
                 //tsOut << "g default\n";
-                tsOut << "mtllib untitled.mtl\n";
-                tsOut << "o Object\n";
-                tsOut << "\n# Vertecis\n";
+                tsOut << "mtllib " << fileOutMtl.fileName() << "\n";
+                tsOut << "o " << fName.left(fName.indexOf(".csv")) << "\n";
+                tsOut << "# Vertecis\n";
                 for (int i=0; i<v.length(); i++) {
                     tsOut << v.at(i);
                 }
@@ -77,7 +78,7 @@ bool parseRdCsv(QString &fName)
                 for (int i=0; i<vt0.length(); i++) {
                     tsOut << vt0.at(i);
                 }
-                tsOut << "usemtl Material\n";
+                tsOut << "usemtl " << "mtl" << fName.left(fName.indexOf(".csv")) << "\n";
                 tsOut << "s off\n";
                 tsOut << "\n# Faces\n";
                 int fCount = v.length()/3;
@@ -89,6 +90,23 @@ bool parseRdCsv(QString &fName)
                 }
                 tsOut.flush();
                 fileOut.close();
+            }
+
+            if (fileOutMtl.open(QFile::WriteOnly | QFile::Text)){
+                QTextStream tsOutMtl(&fileOutMtl);
+                tsOutMtl << "# RenderDoc CSV 2 Obj/Mtl\n";
+                tsOutMtl << "newmtl " << "mtl" << fName.left(fName.indexOf(".csv")) << "\n";
+                tsOutMtl << "Ns 323.999994\n";
+                tsOutMtl << "Ka 1.000000 1.000000 1.000000\n";
+                tsOutMtl << "Kd 0.800000 0.800000 0.800000\n";
+                tsOutMtl << "Ks 0.500000 0.500000 0.500000\n";
+                tsOutMtl << "Ke 0.0 0.0 0.0\n";
+                tsOutMtl << "Ni 1.450000\n";
+                tsOutMtl << "d 1.000000\n";
+                tsOutMtl << "illum 2\n";
+
+                tsOutMtl.flush();
+                fileOutMtl.close();
             }
 
         } else {

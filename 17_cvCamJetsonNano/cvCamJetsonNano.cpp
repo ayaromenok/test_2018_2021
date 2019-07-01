@@ -4,8 +4,7 @@
 int main(int, char**)
 {
     cv::Mat frame;
-//    cv::VideoCapture cap(0, cv::CAP_V4L); 		// RPi/Linux
-    cv::VideoCapture cap(0, cv::CAP_GSTREAMER); 				// PC/Linux
+    cv::VideoCapture cap("nvarguscamerasrc ! 'video/x-raw(memory:NVMM),width=1280, height=720, framerate=120/1, format=NV12' ! nvvidconv flip-method=0 ! 'video/x-raw,width=1280, height=720' ! nvvidconv ! nvegltransform ! nveglglessink -e", cv::CAP_GSTREAMER);
 
     cap.set(cv::CAP_PROP_FRAME_WIDTH, 640);
     cap.set(cv::CAP_PROP_FRAME_HEIGHT, 480);

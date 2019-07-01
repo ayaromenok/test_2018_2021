@@ -43,9 +43,7 @@ bool parseRdCsv(QString &fName)
         //sometime dual space used to separarte values, so remove it first
         QStringList lsHeader(line.simplified().split(" "));
         if ( lsHeader.at(0).contains("VTX") &&
-             lsHeader.at(1).contains("IDX") &&
-             lsHeader.at(6).contains("TEXCOORD0.x")
-             ) {
+             lsHeader.at(1).contains("IDX") ) {
             QFile fileOut(QString(fName.left(fName.indexOf(".csv"))+".obj"));
             QFile fileOutMtl(QString(fName.left(fName.indexOf(".csv"))+".mtl"));
 

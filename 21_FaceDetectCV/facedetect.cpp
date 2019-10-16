@@ -9,7 +9,8 @@ using namespace cv;
 
 static void help()
 {
-    cout << "Using OpenCV version " << CV_VERSION << "\n" << endl;
+    cout << "default - V4L2 /dev/video0, options: thinkerboard | rpi | jetson" 
+		<< "Using OpenCV version " << CV_VERSION << "\n" << endl;
 }
 
 void detectAndDraw( Mat& img, CascadeClassifier& cascade,
@@ -27,12 +28,17 @@ int main( int argc, const char** argv )
     bool tryflip;
     CascadeClassifier cascade, nestedCascade;
     double scale;
-
+    int camera = 0;
+	bool tinkerBoard = false;
+	bool rpi = false;
+	bool jetson = false;
+	
     cv::CommandLineParser parser(argc, argv,
         "{help h||}"
         "{cascade|data/haarcascades/haarcascade_frontalface_alt.xml|}"
         "{nested-cascade|data/haarcascades/haarcascade_eye_tree_eyeglasses.xml|}"
         "{scale|1|}{try-flip||}{@filename||}"
+		"{tinkerboard||}{rpi||}{jetson||}"	
     );
     if (parser.has("help"))
     {
@@ -62,13 +68,35 @@ int main( int argc, const char** argv )
         return -1;
     }
   
-        
-    int camera = 0;
-    if(!capture.open(camera))
+	if (parser.has("tinkerboard"))
+		tinkerBoard = true;
+	if (parser.has("rpi"))
+		rpi = true;
+	if (parser.has("jetson"))
+		jetson = true;	
+    
+    if (tinkerBoard) {
+		capture = VideoCapture("rkcamsrc io-mode=4 isp-mode=2A ! video/x-raw,format=NV12,width=640,height=480 ! videoconvert ! appsink");
+		if(!capture.isOpened()) {
+			cout << "TinkerBoard camera can't start, exiting";
+			return -1;	
+		}
+	} 
+	else if(rpi) {
+		cout << "RPi not implemened yet.. exiting";
+		return -1;
+	}
+	else if (jetson){
+		cout << "Jetson not implemened yet.. exiting";
+		return -1;
+	}    
+    else if(!capture.open(camera))
     {
         cout << "Capture from camera #" <<  camera << " didn't work" << endl;
-        return 1;
+        return -1;
     }
+    capture.set(CAP_PROP_FRAME_WIDTH,640);
+    capture.set(CAP_PROP_FRAME_HEIGHT,480);
 	
     if( capture.isOpened() )
     {

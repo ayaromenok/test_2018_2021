@@ -87,16 +87,19 @@ int main( int argc, const char** argv )
 		return -1;
 	}
 	else if (jetson){
-		cout << "Jetson not implemened yet.. exiting";
-		return -1;
+		cout << "Jetson capturing...";
+		capture = VideoCapture("nvarguscamerasrc ! video/x-raw(memory:NVMM), width=(int)640, height=(int)480, format=(string)NV12, framerate=(fraction)60/1 ! nvvidconv flip-method=0 ! video/x-raw, width=(int)640, height=(int)480, format=(string)BGRx ! videoconvert ! video/x-raw, format=(string)BGR ! appsink", cv::CAP_GSTREAMER);
+		if(!capture.isOpened()) {
+			cout << "Jetson camera can't start, exiting";
+			return -1;	
+		}		
 	}    
     else if(!capture.open(camera))
     {
         cout << "Capture from camera #" <<  camera << " didn't work" << endl;
         return -1;
     }
-    capture.set(CAP_PROP_FRAME_WIDTH,640);
-    capture.set(CAP_PROP_FRAME_HEIGHT,480);
+    
 	
     if( capture.isOpened() )
     {

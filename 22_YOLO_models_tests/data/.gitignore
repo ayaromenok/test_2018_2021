@@ -1,2 +1,3 @@
 *.weights
 *.cfg
+!enet-coco.cfg

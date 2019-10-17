@@ -4,10 +4,10 @@
 int main(int, char**)
 {
     cv::Mat frame;
-    cv::VideoCapture cap("nvarguscamerasrc ! 'video/x-raw(memory:NVMM),width=1280, height=720, framerate=120/1, format=NV12' ! nvvidconv flip-method=0 ! 'video/x-raw,width=1280, height=720' ! nvvidconv ! nvegltransform ! nveglglessink -e", cv::CAP_GSTREAMER);
+    cv::VideoCapture cap("nvarguscamerasrc ! 'video/x-raw(memory:NVMM),width=1280, height=720, format=NV12' ! nvvidconv flip-method=0 ! 'video/x-raw,width=1280, height=720, format=BGRx' ! videoconvert ! video/x-raw, format=BGR ! appsink", cv::CAP_GSTREAMER);
 
-    cap.set(cv::CAP_PROP_FRAME_WIDTH, 640);
-    cap.set(cv::CAP_PROP_FRAME_HEIGHT, 480);
+    cap.set(cv::CAP_PROP_FRAME_WIDTH, 1280);
+    cap.set(cv::CAP_PROP_FRAME_HEIGHT, 720);
     if (!cap.isOpened()) {
         std::cerr << "ERROR: Can't initialize camera capture" << std::endl;
         return 1;

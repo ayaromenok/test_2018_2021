@@ -1,6 +1,7 @@
 
-
-~/sdk/dnn/darknet/darknet detector test ~/sdk/dnn/darknet/cfg/coco.data ~/sdk/dnn/darknet/cfg/yolov3-tiny.cfg ./data/yolov3-tiny.weights ~/sdk/dnn/darknet/data/dog.jpg -i 0 -thresh 0.25 > ./results/v3_tiny_cuda.txt
+CURPATH=`pwd`
+cd ~/sdk/dnn/darknet/
+./darknet detector test ./cfg/coco.data ./cfg/yolov3-tiny.cfg $CURPATH/data/yolov3-tiny.weights ./data/dog.jpg -i 0 -thresh 0.25 > $CURPATH/results/v3_tiny_cuda.txt
 
 
 

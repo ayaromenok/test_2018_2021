@@ -4,6 +4,7 @@
 #include <QOpenGLContext>
 #include <QOpenGLFunctions>
 #include <QOpenGLExtraFunctions>
+#include <QOpenGLTexture>
 
 GLWindow::GLWindow()
     :m_isCoreHasCompute(false),
@@ -47,6 +48,15 @@ GLWindow::initializeGL(){
     }
     connect(this,&QOpenGLWindow::frameSwapped,
             this, QOverload<>::of(&QOpenGLWindow::update));
+
+    QImage img(":/res/512x512.png");
+    if (img.isNull()){
+        qErrnoWarning("test image missed, exiting..");
+        return;
+    } else {
+        qInfo() << "test image " << img.width() <<"x" << img.height();
+    }
+    m_textImageInput = new QOpenGLTexture(img.convertToFormat(QImage::Format_RGBA8888).mirrored());
 }
 void
 GLWindow::paintGL(){

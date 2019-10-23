@@ -4,6 +4,7 @@
 #include <QOpenGLWindow>
 
 class QTimer;
+class QOpenGLTexture;
 
 class GLWindow : public QOpenGLWindow
 {
@@ -30,5 +31,9 @@ private:
     float       m_blurStep;
     QTimer*     m_Timer;
     quint32     m_fpsCounter;
+
+    QOpenGLTexture*     m_textImageInput;
+    QOpenGLTexture*     m_textImageTmp;
+    QOpenGLTexture*     m_textImageProcessed;
 };
 #endif // GLWINDOW_H

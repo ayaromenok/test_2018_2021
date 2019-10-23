@@ -18,12 +18,16 @@ void
 GLWindow::initializeGL(){
     QOpenGLContext* ctx = QOpenGLContext::currentContext();
     if (ctx->isValid()){
-        if (!ctx->hasExtension("GL_ARB_compute_shader")){
-            qErrnoWarning("Desktop GL 4.2 don't support Compute functionality, exiting..");
-            return;
+        if ((ctx->format().majorVersion() == 4) & (ctx->format().minorVersion()==2)){
+            if (!ctx->hasExtension("GL_ARB_compute_shader")){
+                qErrnoWarning("Desktop GL 4.2 don't support Compute functionality, exiting..");
+                return;
+            } else {
+                qInfo("Our last chance - GL_ARB_compute_shader on GL 4.2");
+                m_isCoreHasCompute = false;
+            }
         } else {
-            qInfo("Our last chance - GL_ARB_compute_shader");
-            m_isCoreHasCompute = false;
+            qInfo("GL with Compute functionality granted");
         }
     }
 }

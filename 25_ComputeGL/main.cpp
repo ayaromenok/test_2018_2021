@@ -63,6 +63,7 @@ int main(int argc, char *argv[])
         qErrnoWarning("no GL Context with Compute functionality, exiting..");
         return -1;
     }
+    fmt.setSwapInterval(0); //VSync off
     QSurfaceFormat::setDefaultFormat(fmt);
     GLWindow w;
 

@@ -17,5 +17,10 @@ public:
 
 private:
     bool        m_isCoreHasCompute;
+    bool        m_isAnimationForward;
+    float       m_blurCur;
+    float       m_blurMin;
+    float       m_blurMax;
+    float       m_blurStep;
 };
 #endif // GLWINDOW_H

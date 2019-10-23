@@ -1,4 +1,5 @@
 #include "glwindow.h"
+#include <QtCore>
 #include <QDebug>
 #include <QOpenGLContext>
 #include <QOpenGLFunctions>
@@ -10,15 +11,24 @@ GLWindow::GLWindow()
      m_blurCur(0.0f),
      m_blurMin(0.0f),
      m_blurMax(1.0f),
-     m_blurStep(0.01f)
+     m_blurStep(0.01f),
+     m_fpsCounter(0)
 {
-
+    m_Timer = new QTimer(this);
+    connect(m_Timer, SIGNAL(timeout()), this, SLOT(updateFPS()));
+    m_Timer->start(1000);
 }
 
 GLWindow::~GLWindow()
 {
+    m_Timer->stop();
 }
-
+void
+GLWindow::updateFPS()
+{
+    qInfo() << "FPS:" << m_fpsCounter;
+    m_fpsCounter = 0;
+}
 void
 GLWindow::initializeGL(){
     QOpenGLContext* ctx = QOpenGLContext::currentContext();
@@ -51,17 +61,14 @@ GLWindow::paintGL(){
         m_blurCur += m_blurStep;
         if (m_blurCur>m_blurMax){
             m_isAnimationForward=false;
-            qDebug() << "<<";
         }
     } else {
         m_blurCur -= m_blurStep;
         if (m_blurCur<(m_blurMin+m_blurStep)){
             m_isAnimationForward=true;
-            qDebug() << ">>";
         }
-
     }
-    qDebug() << m_blurCur;
+    m_fpsCounter++;
 }
 
 void

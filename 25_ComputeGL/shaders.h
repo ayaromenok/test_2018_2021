@@ -31,6 +31,7 @@ static const char *fsDisplaySource =
 
 //just copy one texture to another
 static const char *csComputeSource =
+        "#define IMGFMT rgba8 \n"
         "layout(binding=0, IMGFMT) uniform readonly highp image2D inputImage;\n"
         "layout(binding=1, IMGFMT) uniform writeonly highp image2D resultImage;\n"
         "void main() {\n"

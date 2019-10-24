@@ -1,4 +1,5 @@
 #include "glwindow.h"
+#include "shaders.h"
 #include <QtCore>
 #include <QDebug>
 #include <QOpenGLContext>
@@ -8,7 +9,7 @@
 #include <QOpenGLShaderProgram>
 
 GLWindow::GLWindow()
-    :m_isCoreHasCompute(false),
+    :m_isExtHasCompute(true),
      m_isAnimationForward(true),
      m_blurCur(0.0f),
      m_blurMin(0.0f),
@@ -26,12 +27,32 @@ GLWindow::~GLWindow()
 {
     m_Timer->stop();
 }
+
 void
 GLWindow::updateFPS()
 {
     qInfo() << "FPS:" << m_fpsCounter;
     m_fpsCounter = 0;
 }
+
+QByteArray
+GLWindow::versionedShaderCode(const char *src)
+{
+    QByteArray versionedSrc;
+
+    if (QOpenGLContext::currentContext()->isOpenGLES()){
+        versionedSrc.append(QByteArrayLiteral("#version 310 es\n"));
+    } else if (m_isExtHasCompute) {
+        versionedSrc.append(QByteArrayLiteral("#version 420 core\n"));
+    } else {
+        versionedSrc.append(QByteArrayLiteral("#version 430 core\n"));
+    }
+
+    versionedSrc.append(src);
+    return versionedSrc;
+}
+
+
 void
 GLWindow::initializeGL(){
     QOpenGLContext* ctx = QOpenGLContext::currentContext();
@@ -42,7 +63,7 @@ GLWindow::initializeGL(){
                 return;
             } else {
                 qInfo("Our last chance - GL_ARB_compute_shader on GL 4.2");
-                m_isCoreHasCompute = true;
+                m_isExtHasCompute = true;
             }
         } else {
             qInfo("GL with Compute functionality granted");
@@ -61,8 +82,10 @@ GLWindow::initializeGL(){
     m_textImageInput = new QOpenGLTexture(img.convertToFormat(QImage::Format_RGBA8888).mirrored());
 
     m_shaderDisplay = new QOpenGLShaderProgram;
-    m_shaderDisplay->addShaderFromSourceFile(QOpenGLShader::Vertex,":/shaders/vertex.glsl");
-    m_shaderDisplay->addShaderFromSourceFile(QOpenGLShader::Fragment,":/shaders/fragment.glsl");
+//    m_shaderDisplay->addShaderFromSourceFile(QOpenGLShader::Vertex,":/shaders/vertex.glsl");
+//    m_shaderDisplay->addShaderFromSourceFile(QOpenGLShader::Fragment,":/shaders/fragment.glsl");
+    m_shaderDisplay->addShaderFromSourceCode(QOpenGLShader::Vertex, versionedShaderCode(vsDisplaySource));
+    m_shaderDisplay->addShaderFromSourceCode(QOpenGLShader::Fragment, versionedShaderCode(fsDisplaySource));
     m_shaderDisplay->link();
 }
 

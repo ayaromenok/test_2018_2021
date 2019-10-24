@@ -20,7 +20,8 @@ SOURCES += \
     glwindow.cpp
 
 HEADERS += \
-    glwindow.h
+    glwindow.h \
+    shaders.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

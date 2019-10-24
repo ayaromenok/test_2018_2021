@@ -27,8 +27,9 @@ private slots:
 private:
     void updateAnimParams();
     void createGeom();
+    QByteArray versionedShaderCode(const char *src);
 
-    bool        m_isCoreHasCompute;
+    bool        m_isExtHasCompute;
     bool        m_isAnimationForward;
     float       m_blurCur;
     float       m_blurMin;

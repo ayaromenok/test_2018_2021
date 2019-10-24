@@ -102,6 +102,7 @@ GLWindow::paintGL(){
     //f->glDispatchCompute(8,8,1); //no ARB prefix required fof ARB_compute_shader
     updateAnimParams();
 
+    m_texImageInput->bind(0);
     m_shaderDisplay->bind();
     m_shaderDisplay->setUniformValue("matProjection",m_proj);
     //m_shaderDisplay->setUniformValue("imageRatio",m_quadSize);
@@ -110,6 +111,7 @@ GLWindow::paintGL(){
     f->glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
     m_vao->release();
     m_shaderDisplay->release();
+    m_texImageInput->release(0);
 }
 
 void computeProjection(int winWidth, int winHeight, int imgWidth, int imgHeight, QMatrix4x4 &outProjection, QSizeF &outQuadSize)

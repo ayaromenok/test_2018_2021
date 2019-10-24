@@ -26,7 +26,7 @@ static const char *fsDisplaySource =
     "layout(location = 0) out lowp vec4 color;\n"
     "void main() {\n"
     "   lowp vec4 texColor = texture(samImage,texCoord);\n"
-    "   color = vec4(0.8,0.5,0.5,1.0);//vec4(texColor.rgb, 1.0);\n"
+    "   color = vec4(texColor.rgb, 1.0);\n"
     "}\n";
 
 #endif // SHADERS_H

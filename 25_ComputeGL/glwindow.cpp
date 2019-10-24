@@ -10,7 +10,7 @@
 #include <QOpenGLVertexArrayObject>
 
 GLWindow::GLWindow()
-    :m_isExtHasCompute(true),
+    :m_isExtHasCompute(false),
      m_isAnimationForward(true),
      m_blurCur(0.0f),
      m_blurMin(0.0f),
@@ -43,7 +43,7 @@ GLWindow::versionedShaderCode(const char *src)
     if (QOpenGLContext::currentContext()->isOpenGLES()){
         versionedSrc.append(QByteArrayLiteral("#version 310 es\n"));
     } else if (m_isExtHasCompute) {
-        versionedSrc.append(QByteArrayLiteral("#version 420 core\n#extension ARB_compute_shader: enable\n"));
+        versionedSrc.append(QByteArrayLiteral("#version 420 core\n#extension GL_ARB_compute_shader: enable\n"));
     } else {
         versionedSrc.append(QByteArrayLiteral("#version 430 core\n"));
     }

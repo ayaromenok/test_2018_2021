@@ -7,6 +7,7 @@
 #include <QOpenGLExtraFunctions>
 #include <QOpenGLTexture>
 #include <QOpenGLShaderProgram>
+#include <QOpenGLVertexArrayObject>
 
 GLWindow::GLWindow()
     :m_isExtHasCompute(true),
@@ -20,7 +21,6 @@ GLWindow::GLWindow()
     m_Timer = new QTimer(this);
     connect(m_Timer, SIGNAL(timeout()), this, SLOT(updateFPS()));
     m_Timer->start(1000);
-    createGeom();
 }
 
 GLWindow::~GLWindow()
@@ -82,11 +82,13 @@ GLWindow::initializeGL(){
     m_textImageInput = new QOpenGLTexture(img.convertToFormat(QImage::Format_RGBA8888).mirrored());
 
     m_shaderDisplay = new QOpenGLShaderProgram;
-//    m_shaderDisplay->addShaderFromSourceFile(QOpenGLShader::Vertex,":/shaders/vertex.glsl");
-//    m_shaderDisplay->addShaderFromSourceFile(QOpenGLShader::Fragment,":/shaders/fragment.glsl");
     m_shaderDisplay->addShaderFromSourceCode(QOpenGLShader::Vertex, versionedShaderCode(vsDisplaySource));
     m_shaderDisplay->addShaderFromSourceCode(QOpenGLShader::Fragment, versionedShaderCode(fsDisplaySource));
     m_shaderDisplay->link();
+
+    // Create a VAO. Not strictly required for ES 3, but it is for plain OpenGL core context.
+    m_vao = new QOpenGLVertexArrayObject;
+    m_vao->create();
 }
 
 
@@ -119,28 +121,7 @@ GLWindow::updateAnimParams()
     m_fpsCounter++;
 }
 
-void
-GLWindow::createGeom()
-{
-    m_data.resize(3*4);//quad
-    float *p = m_data.data();
 
-    *p++ = -1.0f;
-    *p++ = -1.0f;
-    *p++ = 10.0f;
-
-    *p++ = -1.0f;
-    *p++ = 1.0f;
-    *p++ = 10.0f;
-
-    *p++ = 1.0f;
-    *p++ = 1.0f;
-    *p++ = 10.0f;
-
-    *p++ = 1.0f;
-    *p++ = -1.0f;
-    *p++ = 10.0f;
-}
 void
 GLWindow::resizeGL(int w, int h){
 

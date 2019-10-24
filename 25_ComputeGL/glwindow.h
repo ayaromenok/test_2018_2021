@@ -7,6 +7,7 @@ QT_BEGIN_NAMESPACE
 class QTimer;
 class QOpenGLTexture;
 class QOpenGLShaderProgram;
+class QOpenGLVertexArrayObject;
 QT_END_NAMESPACE
 
 class GLWindow : public QOpenGLWindow
@@ -26,7 +27,6 @@ private slots:
 
 private:
     void updateAnimParams();
-    void createGeom();
     QByteArray versionedShaderCode(const char *src);
 
     bool        m_isExtHasCompute;
@@ -47,8 +47,8 @@ private:
     //QOpenGLShaderProgram *m_shaderComputeV;
     //QOpenGLShaderProgram *m_shaderComputeH;
 
-    QVector<float>      m_data;
-    quint32             m_count;
+    QOpenGLVertexArrayObject *m_vao;
+
 
 };
 #endif // GLWINDOW_H

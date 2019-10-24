@@ -19,6 +19,7 @@ GLWindow::GLWindow()
     m_Timer = new QTimer(this);
     connect(m_Timer, SIGNAL(timeout()), this, SLOT(updateFPS()));
     m_Timer->start(1000);
+    createGeom();
 }
 
 GLWindow::~GLWindow()
@@ -95,7 +96,28 @@ GLWindow::updateAnimParams()
     m_fpsCounter++;
 }
 
+void
+GLWindow::createGeom()
+{
+    m_data.resize(3*4);//quad
+    float *p = m_data.data();
 
+    *p++ = -1.0f;
+    *p++ = -1.0f;
+    *p++ = 10.0f;
+
+    *p++ = -1.0f;
+    *p++ = 1.0f;
+    *p++ = 10.0f;
+
+    *p++ = 1.0f;
+    *p++ = 1.0f;
+    *p++ = 10.0f;
+
+    *p++ = 1.0f;
+    *p++ = -1.0f;
+    *p++ = 10.0f;
+}
 void
 GLWindow::resizeGL(int w, int h){
 

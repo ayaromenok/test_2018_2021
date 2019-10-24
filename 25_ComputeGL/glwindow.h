@@ -26,6 +26,7 @@ private slots:
 
 private:
     void updateAnimParams();
+    void createGeom();
 
     bool        m_isCoreHasCompute;
     bool        m_isAnimationForward;
@@ -44,5 +45,9 @@ private:
     QOpenGLShaderProgram *m_shaderDisplay;
     //QOpenGLShaderProgram *m_shaderComputeV;
     //QOpenGLShaderProgram *m_shaderComputeH;
+
+    QVector<float>      m_data;
+    quint32             m_count;
+
 };
 #endif // GLWINDOW_H

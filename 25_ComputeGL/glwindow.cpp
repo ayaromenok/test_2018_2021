@@ -88,12 +88,21 @@ GLWindow::initializeGL(){
 
     m_shaderCompute = new QOpenGLShaderProgram;
     m_shaderCompute->addShaderFromSourceCode(QOpenGLShader::Compute, versionedShaderCode(csComputeSource));
-    m_shaderCompute->link();
+    if (!m_shaderCompute->link()){
+        qErrnoWarning("Compute Shader link issue. Exiting...");
+        qDebug() << versionedShaderCode(csComputeSource);
+        return;
+    }
 
     m_shaderDisplay = new QOpenGLShaderProgram;
     m_shaderDisplay->addShaderFromSourceCode(QOpenGLShader::Vertex, versionedShaderCode(vsDisplaySource));
     m_shaderDisplay->addShaderFromSourceCode(QOpenGLShader::Fragment, versionedShaderCode(fsDisplaySource));
-    m_shaderDisplay->link();
+    if (!m_shaderDisplay->link()){
+        qErrnoWarning("Vertex/Fragment Shader link issue. Exiting...");
+        qDebug() << versionedShaderCode(vsDisplaySource);
+        qDebug() << versionedShaderCode(fsDisplaySource);
+        return;
+    }
 
     // Create a VAO. Not strictly required for ES 3, but it is for plain OpenGL core context.
     m_vao = new QOpenGLVertexArrayObject;

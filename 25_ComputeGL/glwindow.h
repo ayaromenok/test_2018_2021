@@ -22,6 +22,7 @@ private slots:
     void updateFPS();
 
 private:
+    void updateAnimParams();
 
     bool        m_isCoreHasCompute;
     bool        m_isAnimationForward;

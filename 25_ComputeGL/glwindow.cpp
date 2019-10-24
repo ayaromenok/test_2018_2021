@@ -58,6 +58,8 @@ GLWindow::initializeGL(){
     }
     m_textImageInput = new QOpenGLTexture(img.convertToFormat(QImage::Format_RGBA8888).mirrored());
 }
+
+
 void
 GLWindow::paintGL(){
     QOpenGLExtraFunctions *f = QOpenGLContext::currentContext()->extraFunctions();
@@ -66,7 +68,13 @@ GLWindow::paintGL(){
     f->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     //f->glDispatchCompute(8,8,1); //no ARB prefix required fof ARB_compute_shader
+    updateAnimParams();
+}
 
+
+void
+GLWindow::updateAnimParams()
+{
     if(m_isAnimationForward){
         m_blurCur += m_blurStep;
         if (m_blurCur>m_blurMax){
@@ -80,6 +88,7 @@ GLWindow::paintGL(){
     }
     m_fpsCounter++;
 }
+
 
 void
 GLWindow::resizeGL(int w, int h){

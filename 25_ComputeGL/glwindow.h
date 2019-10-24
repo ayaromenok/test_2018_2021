@@ -2,6 +2,7 @@
 #define GLWINDOW_H
 
 #include <QOpenGLWindow>
+#include <QMatrix4x4>
 
 QT_BEGIN_NAMESPACE
 class QTimer;
@@ -36,12 +37,14 @@ private:
     float       m_blurMax;
     float       m_blurStep;
     quint32     m_fpsCounter;
+    QMatrix4x4  m_proj;
+    QSizeF      m_quadSize;
 
     QTimer                  *m_Timer;
 
-    QOpenGLTexture          *m_textImageInput;
-    //QOpenGLTexture          *m_textImageTmp;
-    //QOpenGLTexture          *m_textImageProcessed;
+    QOpenGLTexture          *m_texImageInput;
+    //QOpenGLTexture          *m_texImageTmp;
+    //QOpenGLTexture          *m_texImageProcessed;
 
     QOpenGLShaderProgram *m_shaderDisplay;
     //QOpenGLShaderProgram *m_shaderComputeV;

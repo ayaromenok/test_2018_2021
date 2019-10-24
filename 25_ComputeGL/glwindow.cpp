@@ -5,6 +5,7 @@
 #include <QOpenGLFunctions>
 #include <QOpenGLExtraFunctions>
 #include <QOpenGLTexture>
+#include <QOpenGLShaderProgram>
 
 GLWindow::GLWindow()
     :m_isCoreHasCompute(false),
@@ -57,6 +58,11 @@ GLWindow::initializeGL(){
         qInfo() << "test image " << img.width() <<"x" << img.height();
     }
     m_textImageInput = new QOpenGLTexture(img.convertToFormat(QImage::Format_RGBA8888).mirrored());
+
+    m_shaderDisplay = new QOpenGLShaderProgram;
+    m_shaderDisplay->addShaderFromSourceFile(QOpenGLShader::Vertex,":/shaders/vertex.glsl");
+    m_shaderDisplay->addShaderFromSourceFile(QOpenGLShader::Fragment,":/shaders/fragment.glsl");
+    m_shaderDisplay->link();
 }
 
 

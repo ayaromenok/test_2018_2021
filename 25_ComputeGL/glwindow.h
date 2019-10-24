@@ -3,8 +3,11 @@
 
 #include <QOpenGLWindow>
 
+QT_BEGIN_NAMESPACE
 class QTimer;
 class QOpenGLTexture;
+class QOpenGLShaderProgram;
+QT_END_NAMESPACE
 
 class GLWindow : public QOpenGLWindow
 {
@@ -30,11 +33,16 @@ private:
     float       m_blurMin;
     float       m_blurMax;
     float       m_blurStep;
-    QTimer*     m_Timer;
     quint32     m_fpsCounter;
 
-    QOpenGLTexture*     m_textImageInput;
-    QOpenGLTexture*     m_textImageTmp;
-    QOpenGLTexture*     m_textImageProcessed;
+    QTimer                  *m_Timer;
+
+    QOpenGLTexture          *m_textImageInput;
+    //QOpenGLTexture          *m_textImageTmp;
+    //QOpenGLTexture          *m_textImageProcessed;
+
+    QOpenGLShaderProgram *m_shaderDisplay;
+    //QOpenGLShaderProgram *m_shaderComputeV;
+    //QOpenGLShaderProgram *m_shaderComputeH;
 };
 #endif // GLWINDOW_H

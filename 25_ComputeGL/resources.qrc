@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>res/512x512.png</file>
+        <file>shaders/vertex.glsl</file>
+        <file>shaders/fragment.glsl</file>
     </qresource>
 </RCC>

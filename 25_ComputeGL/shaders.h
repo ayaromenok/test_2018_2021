@@ -31,13 +31,12 @@ static const char *fsDisplaySource =
 
 //just copy one texture to another
 static const char *csComputeSource =
-        "#define IMGFMT rgba8 \n"
-        "layout(binding=0, IMGFMT) uniform readonly highp image2D inputImage;\n"
-        "layout(binding=1, IMGFMT) uniform writeonly highp image2D resultImage;\n"
+        "layout(binding=0, rgba8) uniform readonly highp image2D inputImage;\n"
+        "layout(binding=1, rgba8) uniform writeonly highp image2D resultImage;\n"
         "void main() {\n"
         "  int x = int(gl_GlobalInvocationID.x);\n"
         "  int y = int(gl_GlobalInvocationID.y);\n"
         "  vec4 imgValue =  imageLoad(inputImage, ivec2(x,y));\n"
         "  imageStore(resultImage, ivec2(x,y), imgValue);\n"
-        "}/n";
+        "}\n";
 #endif // SHADERS_H

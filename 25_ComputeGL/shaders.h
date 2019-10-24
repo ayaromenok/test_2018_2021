@@ -29,4 +29,14 @@ static const char *fsDisplaySource =
     "   color = vec4(texColor.rgb, 1.0);\n"
     "}\n";
 
+//just copy one texture to another
+static const char *csComputeSource =
+        "layout(binding=0, IMGFMT) uniform readonly highp image2D inputImage;\n"
+        "layout(binding=1, IMGFMT) uniform writeonly highp image2D resultImage;\n"
+        "void main() {\n"
+        "  int x = int(gl_GlobalInvocationID.x);\n"
+        "  int y = int(gl_GlobalInvocationID.y);\n"
+        "  vec4 imgValue =  imageLoad(inputImage, ivec2(x,y));\n"
+        "  imageStore(resultImage, ivec2(x,y), imgValue);\n"
+        "}/n";
 #endif // SHADERS_H

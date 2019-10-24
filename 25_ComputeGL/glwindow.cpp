@@ -81,6 +81,15 @@ GLWindow::initializeGL(){
     }
     m_texImageInput = new QOpenGLTexture(img.convertToFormat(QImage::Format_RGBA8888).mirrored());
 
+    m_texImageTmp = new QOpenGLTexture(QOpenGLTexture::Target2D);
+    m_texImageTmp->setFormat(m_texImageInput->format());
+    m_texImageTmp->setSize(m_texImageInput->width(),m_texImageInput->height());
+    m_texImageTmp->allocateStorage(QOpenGLTexture::RGBA,QOpenGLTexture::UInt8); // WTF?
+
+    m_shaderCompute = new QOpenGLShaderProgram;
+    m_shaderCompute->addShaderFromSourceCode(QOpenGLShader::Compute, versionedShaderCode(csComputeSource));
+    m_shaderCompute->link();
+
     m_shaderDisplay = new QOpenGLShaderProgram;
     m_shaderDisplay->addShaderFromSourceCode(QOpenGLShader::Vertex, versionedShaderCode(vsDisplaySource));
     m_shaderDisplay->addShaderFromSourceCode(QOpenGLShader::Fragment, versionedShaderCode(fsDisplaySource));
@@ -95,6 +104,15 @@ GLWindow::initializeGL(){
 void
 GLWindow::paintGL(){
     QOpenGLExtraFunctions *f = QOpenGLContext::currentContext()->extraFunctions();
+
+    // Compute path
+    f->glBindImageTexture(0, m_texImageInput->textureId(), 0, 0, 0,  GL_READ_WRITE, GL_RGBA8);
+    f->glBindImageTexture(1, m_texImageTmp->textureId(), 0, 0, 0,  GL_READ_WRITE, GL_RGBA8);
+    m_shaderCompute->bind();
+    f->glDispatchCompute(16,16,1);
+    f->glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
+    m_shaderCompute->release();
+    //end of compute path
 
     f->glClearColor(0, m_blurCur, 0, 1);
     f->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

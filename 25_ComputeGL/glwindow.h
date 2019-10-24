@@ -43,11 +43,11 @@ private:
     QTimer                  *m_Timer;
 
     QOpenGLTexture          *m_texImageInput;
-    //QOpenGLTexture          *m_texImageTmp;
+    QOpenGLTexture          *m_texImageTmp;
     //QOpenGLTexture          *m_texImageProcessed;
 
     QOpenGLShaderProgram *m_shaderDisplay;
-    //QOpenGLShaderProgram *m_shaderComputeV;
+    QOpenGLShaderProgram *m_shaderCompute;
     //QOpenGLShaderProgram *m_shaderComputeH;
 
     QOpenGLVertexArrayObject *m_vao;

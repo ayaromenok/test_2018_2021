@@ -31,6 +31,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 RESOURCES += \
     resources.qrc
 
-DISTFILES += \
-    shaders/fragment.glsl \
-    shaders/vertex.glsl
+DISTFILES +=

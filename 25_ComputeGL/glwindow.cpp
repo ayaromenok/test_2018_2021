@@ -123,7 +123,6 @@ GLWindow::paintGL(){
     //end of compute path
     f->glBindImageTexture(0, 0, 0, 0, 0,  GL_READ_WRITE, GL_RGBA8);
     f->glBindImageTexture(1, 0, 0, 0, 0,  GL_READ_WRITE, GL_RGBA8);
-    
 
     f->glClearColor(0, m_blurCur, 0, 1);
     f->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

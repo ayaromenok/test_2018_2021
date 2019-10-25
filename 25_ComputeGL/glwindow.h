@@ -40,6 +40,7 @@ private:
     QMatrix4x4  m_proj;
     QSizeF      m_quadSize;
     QSize       m_workGroups;
+    quint32     m_fpsComputeMult;
 
     QTimer                  *m_Timer;
 

@@ -16,7 +16,8 @@ GLWindow::GLWindow()
      m_blurMin(0.0f),
      m_blurMax(1.0f),
      m_blurStep(0.01f),
-     m_fpsCounter(0)
+     m_fpsCounter(0),
+     m_fpsComputeMult(1)
 {
     m_Timer = new QTimer(this);
     connect(m_Timer, SIGNAL(timeout()), this, SLOT(updateFPS()));
@@ -31,7 +32,8 @@ GLWindow::~GLWindow()
 void
 GLWindow::updateFPS()
 {
-    qInfo() << "FPS:" << m_fpsCounter;
+    qInfo() << "FPS:" << m_fpsCounter
+            << "MOps:" << (m_fpsCounter*m_fpsComputeMult/1024/1024);
     m_fpsCounter = 0;
 }
 
@@ -115,6 +117,7 @@ GLWindow::initializeGL(){
     m_vao = new QOpenGLVertexArrayObject;
     m_vao->create();
     m_workGroups = getWorkGroups(10,QSize(m_texImageInput->width(),m_texImageInput->height()));
+    m_fpsComputeMult = m_texImageInput->width()*m_texImageInput->height();
 }
 
 

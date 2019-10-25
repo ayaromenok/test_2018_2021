@@ -85,7 +85,6 @@ GLWindow::initializeGL(){
     m_texImageTmp->setFormat(m_texImageInput->format());
     m_texImageTmp->setSize(m_texImageInput->width(),m_texImageInput->height());
     m_texImageTmp->allocateStorage(QOpenGLTexture::RGBA,QOpenGLTexture::UInt8); // WTF?
-
     m_shaderCompute = new QOpenGLShaderProgram;
     m_shaderCompute->addShaderFromSourceCode(QOpenGLShader::Compute, versionedShaderCode(csComputeSource));
     if (!m_shaderCompute->link()){
@@ -93,7 +92,6 @@ GLWindow::initializeGL(){
         qDebug() << versionedShaderCode(csComputeSource);
         return;
     }
-
     m_shaderDisplay = new QOpenGLShaderProgram;
     m_shaderDisplay->addShaderFromSourceCode(QOpenGLShader::Vertex, versionedShaderCode(vsDisplaySource));
     m_shaderDisplay->addShaderFromSourceCode(QOpenGLShader::Fragment, versionedShaderCode(fsDisplaySource));
@@ -132,10 +130,11 @@ GLWindow::paintGL(){
     m_texImageInput->bind(0);
     m_shaderDisplay->bind();
     m_shaderDisplay->setUniformValue("matProjection",m_proj);
-    //m_shaderDisplay->setUniformValue("imageRatio",m_quadSize);
+    m_shaderDisplay->setUniformValue("imageRatio",m_quadSize);
     m_shaderDisplay->setUniformValue("samImage",0);
+    m_shaderDisplay->setUniformValue("resImage",1);
     m_vao->bind();
-    f->glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    f->glDrawArrays(GL_TRIANGLE_STRIP, 0, 8);
     m_vao->release();
     m_shaderDisplay->release();
     m_texImageInput->release(0);

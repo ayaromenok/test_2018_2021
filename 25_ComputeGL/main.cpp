@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
     QSurfaceFormat::setDefaultFormat(fmt);
     GLWindow w;
 
-    w.setGeometry(100,100,320,240);
+    w.setGeometry(100,100,480,240);
     w.show();
 
     return a.exec();

@@ -30,7 +30,7 @@ static const char *vsDisplaySource =
     "   if(gl_VertexID > 3) {\n"
     "      selectTX.x=1;\n"
     "   } else {\n"
-    "       selectTX.x=0;\n"
+    "      selectTX.x=0;\n"
     "   }\n"
     "}\n";
 
@@ -43,10 +43,10 @@ static const char *fsDisplaySource =
     "void main() {\n"
     "   lowp vec4 texColor;\n"
         "if (selectTX.x>0){\n"
+    "    texColor = texture(resImage,texCoord);\n"
+    " } else {\n"
     "    texColor = texture(samImage,texCoord);\n"
-        "} else {\n"
-        "    texColor = texture(resImage,texCoord);\n"
-        "}\n"
+    "    }\n"
     "   color = vec4(texColor.rgb, 1.0);\n"
     "}\n";
 

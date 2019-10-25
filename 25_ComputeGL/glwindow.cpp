@@ -84,7 +84,8 @@ GLWindow::initializeGL(){
     m_texImageTmp = new QOpenGLTexture(QOpenGLTexture::Target2D);
     m_texImageTmp->setFormat(m_texImageInput->format());
     m_texImageTmp->setSize(m_texImageInput->width(),m_texImageInput->height());
-    m_texImageTmp->allocateStorage(QOpenGLTexture::RGBA,QOpenGLTexture::UInt8); // WTF?
+    m_texImageTmp->allocateStorage(QOpenGLTexture::RGBA,QOpenGLTexture::UInt8);
+
     m_shaderCompute = new QOpenGLShaderProgram;
     m_shaderCompute->addShaderFromSourceCode(QOpenGLShader::Compute, versionedShaderCode(csComputeSource));
     if (!m_shaderCompute->link()){
@@ -120,6 +121,9 @@ GLWindow::paintGL(){
     f->glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
     m_shaderCompute->release();
     //end of compute path
+    f->glBindImageTexture(0, 0, 0, 0, 0,  GL_READ_WRITE, GL_RGBA8);
+    f->glBindImageTexture(1, 0, 0, 0, 0,  GL_READ_WRITE, GL_RGBA8);
+    
 
     f->glClearColor(0, m_blurCur, 0, 1);
     f->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -128,6 +132,7 @@ GLWindow::paintGL(){
     updateAnimParams();
 
     m_texImageInput->bind(0);
+    m_texImageTmp->bind(1);
     m_shaderDisplay->bind();
     m_shaderDisplay->setUniformValue("matProjection",m_proj);
     m_shaderDisplay->setUniformValue("imageRatio",m_quadSize);

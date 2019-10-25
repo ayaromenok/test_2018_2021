@@ -58,7 +58,7 @@ static const char *csComputeSource =
         "void main() {\n"
         "  int x = int(gl_GlobalInvocationID.x);\n"
         "  int y = int(gl_GlobalInvocationID.y);\n"
-        "  vec4 imgValue =  imageLoad(inputImage, ivec2(x,y));\n"
+        "  vec4 imgValue =  imageLoad(inputImage, ivec2(x,y))*0.5;\n"
         "  imageStore(resultImage, ivec2(x,y), imgValue);\n"
         "}\n";
 #endif // SHADERS_H

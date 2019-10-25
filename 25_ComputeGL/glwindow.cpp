@@ -33,7 +33,8 @@ void
 GLWindow::updateFPS()
 {
     qInfo() << "FPS:" << m_fpsCounter
-            << "MOps:" << (m_fpsCounter*m_fpsComputeMult/1024.0f/1024.0f);
+            << "MOps:" << (m_fpsCounter*m_fpsComputeMult/1024.0f/1024.0f)
+            << "MMul:" << (4*m_fpsCounter*m_fpsComputeMult/1024.0f/1024.0f);
     m_fpsCounter = 0;
 }
 

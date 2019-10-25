@@ -39,6 +39,7 @@ private:
     quint32     m_fpsCounter;
     QMatrix4x4  m_proj;
     QSizeF      m_quadSize;
+    QSize       m_workGroups;
 
     QTimer                  *m_Timer;
 

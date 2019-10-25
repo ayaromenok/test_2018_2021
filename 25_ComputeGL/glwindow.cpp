@@ -52,6 +52,14 @@ GLWindow::versionedShaderCode(const char *src)
     return versionedSrc;
 }
 
+QSize getWorkGroups(int workGroupSize, const QSize &imageSize)
+{
+    int x = imageSize.width();
+    x = (x % workGroupSize) ? (x / workGroupSize) + 1 : (x / workGroupSize);
+    int y = imageSize.height();
+    y = (y % workGroupSize) ? (y / workGroupSize) + 1 : (y / workGroupSize);
+    return QSize(x,y);
+}
 
 void
 GLWindow::initializeGL(){
@@ -106,6 +114,7 @@ GLWindow::initializeGL(){
     // Create a VAO. Not strictly required for ES 3, but it is for plain OpenGL core context.
     m_vao = new QOpenGLVertexArrayObject;
     m_vao->create();
+    m_workGroups = getWorkGroups(10,QSize(m_texImageInput->width(),m_texImageInput->height()));
 }
 
 
@@ -117,7 +126,7 @@ GLWindow::paintGL(){
     f->glBindImageTexture(0, m_texImageInput->textureId(), 0, 0, 0,  GL_READ_WRITE, GL_RGBA8);
     f->glBindImageTexture(1, m_texImageTmp->textureId(), 0, 0, 0,  GL_READ_WRITE, GL_RGBA8);
     m_shaderCompute->bind();
-    f->glDispatchCompute(16,16,1);
+    f->glDispatchCompute(m_workGroups.width(),m_workGroups.height(),1);
     f->glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
     m_shaderCompute->release();
     //end of compute path
@@ -181,6 +190,7 @@ void computeProjection(int winWidth, int winHeight, int imgWidth, int imgHeight,
          1.0f);
     outQuadSize = QSizeF(quadWidth,quadHeight);
 }
+
 
 void
 GLWindow::updateAnimParams()

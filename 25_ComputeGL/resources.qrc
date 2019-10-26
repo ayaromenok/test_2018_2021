@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>res/512x512.png</file>
+        <file>res/128x128.png</file>
+        <file>res/256x256.png</file>
     </qresource>
 </RCC>

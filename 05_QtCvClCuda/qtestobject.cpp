@@ -7,7 +7,7 @@
 #include <opencv2/core/opencl/opencl_info.hpp>
 #include <opencv2/imgproc.hpp>
 
-NqTestObject::NqTestObject(QObject *parent) : QObject(parent)
+NqTestObject::NqTestObject()
 {
 
 }

@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
     to.testCL();
     to.testCPU();
     to.testCL();
-    //to.testCUDA();
+    to.testCUDA();
 
     return app.exec();
 }

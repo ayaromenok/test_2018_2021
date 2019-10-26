@@ -13,9 +13,10 @@ CPU: 4xA72 @ 1800MHz
 GPU Adreno-510 @ 600MHz/ 180 gflop fp16
 Mem  3Gb/933MHz (14.9 GB/s))   
 
-        S8      S8 full     G5      G5 full      
-CPU     283.2   322/2       415.4   429.3
-GPU     74.8    69.1        712.2   668.9
+msec
+        S8      S8 full     G5      G5 full Jetson Nano
+CPU     283.2   322/2       415.4   429.3   379.5
+GPU     74.8    69.1        712.2   668.9   124
 
 
 
@@ -28,3 +29,8 @@ I lib05_QtCvClCuda.so: CL name QUALCOMM Adreno(TM)
 I lib05_QtCvClCuda.so: CL version OpenCL 2.0 Adreno(TM) 510
 I lib05_QtCvClCuda.so: CL workGroupSize 1024
 I lib05_QtCvClCuda.so: CL global memory 1487912960
+
+CL name Tegra X1
+CL vsesion OpenCL 1.2 pocl CUDA-sm_53
+CL workgroupsize 1024
+CL global memory 4148543488

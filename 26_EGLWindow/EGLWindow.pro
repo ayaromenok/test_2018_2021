@@ -1,4 +1,4 @@
-QT -= gui
+QT += gui
 
 CONFIG += c++11 console
 CONFIG -= app_bundle
@@ -16,7 +16,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp
-QMAKE_LFLAGS +=-lX11 -lEGL -lGLESv2
+QMAKE_LFLAGS += -lX11 -lXext -lEGL -lGLESv2 -lX11-xcb -lxcb
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin

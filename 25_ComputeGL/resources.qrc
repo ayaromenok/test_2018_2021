@@ -4,5 +4,6 @@
         <file>res/128x128.png</file>
         <file>res/256x256.png</file>
         <file>res/1024x1024.png</file>
+        <file>res/2048x2048.png</file>
     </qresource>
 </RCC>

@@ -119,6 +119,8 @@ GLWindow::initializeGL(){
     m_vao->create();
     m_workGroups = getWorkGroups(10,QSize(m_texImageInput->width(),m_texImageInput->height()));
     m_fpsComputeMult = m_texImageInput->width()*m_texImageInput->height();
+    qInfo() << "wg size" << m_workGroups.width() << m_workGroups.height()
+            << "tx size" << m_texImageInput->width() << m_texImageInput->height();
 }
 
 

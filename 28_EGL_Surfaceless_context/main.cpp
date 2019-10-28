@@ -9,7 +9,7 @@
 #include <GLES3/gl31.h>
 #include <fcntl.h>
 #include <gbm.h>
-
+#include <stdio.h>
 
 
 int main(int argc, char *argv[])
@@ -67,7 +67,7 @@ int main(int argc, char *argv[])
                                                cfg,
                                                EGL_NO_CONTEXT,
                                                attribs);
-     if (core_ctx != EGL_NO_CONTEXT){
+     if (core_ctx == EGL_NO_CONTEXT){
          qErrnoWarning("Can't create surfaceless context, exiting...");
          return -6;
      }
@@ -77,5 +77,19 @@ int main(int argc, char *argv[])
          qErrnoWarning("Can't make ES Current, exiting...");
          return -7;
      }
+ 
+    GLint max_invocations;
+    glGetIntegerv (GL_MAX_COMPUTE_WORK_GROUP_INVOCATIONS, &max_invocations);
+    qInfo() << "GL_MAX_COMPUTE_WORK_GROUP_INVOCATIONS" << max_invocations;
+
+    GLint mem_size;
+    glGetIntegerv (GL_MAX_COMPUTE_SHARED_MEMORY_SIZE, &mem_size);
+    qInfo() << "GL_MAX_COMPUTE_SHARED_MEMORY_SIZE" << mem_size;
+
+    //the end
+    eglDestroyContext (egl_dpy, core_ctx);
+   eglTerminate (egl_dpy);
+   gbm_device_destroy (gbm);
+   //fclose (fd);
     return a.exec();
 }

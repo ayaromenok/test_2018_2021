@@ -83,7 +83,7 @@ GLWindow::initializeGL(){
     connect(this,&QOpenGLWindow::frameSwapped,
             this, QOverload<>::of(&QOpenGLWindow::update));
 
-    QImage img(":/res/1024x1024.png");
+    QImage img(":/res/2048x2048.png");
     if (img.isNull()){
         qErrnoWarning("test image missed, exiting..");
         return;

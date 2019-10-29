@@ -58,10 +58,9 @@ GLWindow::versionedShaderCode(const char *src, bool computeShader)
     }
 
     if (computeShader){
-        GLint maxCW;
-        glGetIntegerv (GL_MAX_COMPUTE_WORK_GROUP_INVOCATIONS, &maxCW);
-        qInfo() << "GL_MAX_COMPUTE_WORK_GROUP_INVOCATIONS" << maxCW;
-        qInfo() << "2D" << (int)sqrtf(maxCW);
+        GLint maxCWG;
+        glGetIntegerv (GL_MAX_COMPUTE_WORK_GROUP_INVOCATIONS, &maxCWG);
+        qInfo() << "maxComputeWG:" << maxCWG << ",\t2D:" << (int)sqrtf(maxCWG);
         versionedSrc.append(QByteArrayLiteral("layout(local_size_x=16, local_size_y=16) in;\n"));
     }
 

@@ -122,7 +122,7 @@ GLWindow::initializeGL(){
     // Create a VAO. Not strictly required for ES 3, but it is for plain OpenGL core context.
     m_vao = new QOpenGLVertexArrayObject;
     m_vao->create();
-    m_workGroups = getWorkGroups(10,QSize(m_texImageInput->width(),m_texImageInput->height()));
+    m_workGroups = getWorkGroups(16,QSize(m_texImageInput->width(),m_texImageInput->height()));
 
     //2 - 1 mul + 1 add
     m_fpsComputeMult = 2*(m_texImageInput->width()-m_radiusX)*(m_texImageInput->height())* m_radiusX;

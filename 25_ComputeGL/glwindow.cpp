@@ -20,8 +20,8 @@ GLWindow::GLWindow()
      m_blurStep(0.01f),
      m_fpsCounter(0),
      m_fpsComputeMult(1),
-     m_radiusX(21),
-     m_radiusY(1)
+     m_radiusX(10),
+     m_radiusY(10)
 {
     m_Timer = new QTimer(this);
     connect(m_Timer, SIGNAL(timeout()), this, SLOT(updateFPS()));
@@ -88,7 +88,7 @@ GLWindow::initializeGL(){
     connect(this,&QOpenGLWindow::frameSwapped,
             this, QOverload<>::of(&QOpenGLWindow::update));
 
-    QImage img(":/res/1024x1024.png");
+    QImage img(":/res/256x256.png");
     if (img.isNull()){
         qErrnoWarning("test image missed, exiting..");
         return;
@@ -126,8 +126,10 @@ GLWindow::initializeGL(){
 
     //2 - 1 mul + 1 add
     //2 - diameter used
-    m_fpsComputeMult = 2*(m_texImageInput->width()-2*m_radiusX)*(m_texImageInput->height())
-            * m_radiusX*2;
+    m_fpsComputeMult = 2*(m_texImageInput->width()-2*m_radiusX)
+            *(m_texImageInput->height()-2*m_radiusY)
+            * m_radiusX*2
+            * m_radiusY*2;
     qInfo() << "wg size" << m_workGroups.width() << m_workGroups.height()
             << "tx size" << m_texImageInput->width() << m_texImageInput->height();
 }
@@ -143,8 +145,8 @@ GLWindow::paintGL(){
     m_shaderCompute->bind();
     m_shaderCompute->setUniformValue("radiusX",m_radiusX);
     m_shaderCompute->setUniformValue("radiusY",m_radiusY);
-    m_shaderCompute->setUniformValue("weightX",(float)(1.0f/m_radiusX));
-    m_shaderCompute->setUniformValue("weightY",(float)(1.0f/m_radiusY));
+    m_shaderCompute->setUniformValue("weightX",(float)(0.5f/m_radiusX));
+    m_shaderCompute->setUniformValue("weightY",(float)(0.5f/m_radiusY));
     f->glDispatchCompute(m_workGroups.width(),m_workGroups.height(),1);
     f->glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
     m_shaderCompute->release();

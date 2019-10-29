@@ -52,8 +52,6 @@ static const char *fsDisplaySource =
 
 //just copy one texture to another
 static const char *csComputeSource =
-        "//precision mediump float;//no effect on VC6\n"
-        "layout(local_size_x=16, local_size_y=16) in;\n"
         "layout(binding=0, rgba8) uniform readonly highp image2D inputImage;\n"
         "layout(binding=1, rgba8) uniform writeonly highp image2D resultImage;\n"
         "uniform int radiusX; \n"

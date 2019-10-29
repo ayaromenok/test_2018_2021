@@ -28,7 +28,7 @@ private slots:
 
 private:
     void updateAnimParams();
-    QByteArray versionedShaderCode(const char *src);
+    QByteArray versionedShaderCode(const char *src, bool computeShader = false);
 
     bool        m_isExtHasCompute;
     bool        m_isAnimationForward;
@@ -43,6 +43,7 @@ private:
     quint32     m_fpsComputeMult;
     quint32     m_radiusX;
     quint32     m_radiusY;
+    quint32     m_maxComputeWG;
 
     QTimer                  *m_Timer;
 

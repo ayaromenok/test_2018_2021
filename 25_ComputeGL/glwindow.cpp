@@ -21,7 +21,8 @@ GLWindow::GLWindow()
      m_fpsCounter(0),
      m_fpsComputeMult(1),
      m_radiusX(10),
-     m_radiusY(10)
+     m_radiusY(10),
+     m_maxComputeWG(128)    //GLES 3.1 min req
 {
     m_Timer = new QTimer(this);
     connect(m_Timer, SIGNAL(timeout()), this, SLOT(updateFPS()));
@@ -44,7 +45,7 @@ GLWindow::updateFPS()
 }
 
 QByteArray
-GLWindow::versionedShaderCode(const char *src)
+GLWindow::versionedShaderCode(const char *src, bool computeShader)
 {
     QByteArray versionedSrc;
 
@@ -54,6 +55,14 @@ GLWindow::versionedShaderCode(const char *src)
         versionedSrc.append(QByteArrayLiteral("#version 420 core\n#extension GL_ARB_compute_shader: enable\n"));
     } else {
         versionedSrc.append(QByteArrayLiteral("#version 430 core\n"));
+    }
+
+    if (computeShader){
+        GLint maxCW;
+        glGetIntegerv (GL_MAX_COMPUTE_WORK_GROUP_INVOCATIONS, &maxCW);
+        qInfo() << "GL_MAX_COMPUTE_WORK_GROUP_INVOCATIONS" << maxCW;
+        qInfo() << "2D" << (int)sqrtf(maxCW);
+        versionedSrc.append(QByteArrayLiteral("layout(local_size_x=16, local_size_y=16) in;\n"));
     }
 
     versionedSrc.append(src);
@@ -106,7 +115,7 @@ GLWindow::initializeGL(){
     m_shaderCompute->addShaderFromSourceCode(QOpenGLShader::Compute, versionedShaderCode(csComputeSource));
     if (!m_shaderCompute->link()){
         qErrnoWarning("Compute Shader link issue. Exiting...");
-        qDebug() << versionedShaderCode(csComputeSource);
+        qDebug() << versionedShaderCode(csComputeSource, true);
         return;
     }
     m_shaderDisplay = new QOpenGLShaderProgram;

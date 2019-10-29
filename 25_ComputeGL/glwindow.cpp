@@ -86,7 +86,7 @@ GLWindow::initializeGL(){
     connect(this,&QOpenGLWindow::frameSwapped,
             this, QOverload<>::of(&QOpenGLWindow::update));
 
-    QImage img(":/res/2048x2048.png");
+    QImage img(":/res/512x512.png");
     if (img.isNull()){
         qErrnoWarning("test image missed, exiting..");
         return;
@@ -138,6 +138,8 @@ GLWindow::paintGL(){
     m_shaderCompute->bind();
     m_shaderCompute->setUniformValue("radiusX",m_radiusX);
     m_shaderCompute->setUniformValue("radiusY",m_radiusY);
+    m_shaderCompute->setUniformValue("weightX",(float)(1.0f/m_radiusX));
+    m_shaderCompute->setUniformValue("weightY",(float)(1.0f/m_radiusY));
     f->glDispatchCompute(m_workGroups.width(),m_workGroups.height(),1);
     f->glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
     m_shaderCompute->release();

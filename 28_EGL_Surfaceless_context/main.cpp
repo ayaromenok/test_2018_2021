@@ -85,6 +85,9 @@ int main(int argc, char *argv[])
     GLint mem_size;
     glGetIntegerv (GL_MAX_COMPUTE_SHARED_MEMORY_SIZE, &mem_size);
     qInfo() << "GL_MAX_COMPUTE_SHARED_MEMORY_SIZE" << mem_size;
+    GLint texImg_units;
+    glGetIntegerv (GL_MAX_COMPUTE_TEXTURE_IMAGE_UNITS, &texImg_units);
+    qInfo() << "GL_MAX_COMPUTE_TEXTURE_IMAGE_UNITS" << texImg_units;
 
     //the end
     eglDestroyContext (egl_dpy, core_ctx);

@@ -9,6 +9,8 @@
 #include <QOpenGLShaderProgram>
 #include <QOpenGLVertexArrayObject>
 
+#define SHOW_RESULT 1
+
 GLWindow::GLWindow()
     :m_isExtHasCompute(false),
      m_isAnimationForward(true),
@@ -23,7 +25,7 @@ GLWindow::GLWindow()
 {
     m_Timer = new QTimer(this);
     connect(m_Timer, SIGNAL(timeout()), this, SLOT(updateFPS()));
-    m_Timer->start(5000);
+    m_Timer->start(10000);
 }
 
 GLWindow::~GLWindow()
@@ -34,10 +36,10 @@ GLWindow::~GLWindow()
 void
 GLWindow::updateFPS()
 {
-    //use 5 sec timer for better tolerance
-    qInfo() << "FPS:" << m_fpsCounter/5.0f
-            << "\tMOps:" << (m_fpsCounter/5.0f*m_fpsComputeMult/1024.0f/1024.0f)
-            << "\tMFLOPS:" << (4*m_fpsCounter/5.0f*m_fpsComputeMult/1024.0f/1024.0f);
+    //use 10 sec timer for better tolerance
+    qInfo() << "FPS:" << m_fpsCounter/10.0f
+            << "\tMOps:" << (m_fpsCounter/10.0f*m_fpsComputeMult/1024.0f/1024.0f)
+            << "\tMFLOPS:" << (4*m_fpsCounter/10.0f*m_fpsComputeMult/1024.0f/1024.0f);
     m_fpsCounter = 0;
 }
 
@@ -86,7 +88,7 @@ GLWindow::initializeGL(){
     connect(this,&QOpenGLWindow::frameSwapped,
             this, QOverload<>::of(&QOpenGLWindow::update));
 
-    QImage img(":/res/512x512.png");
+    QImage img(":/res/1024x1024.png");
     if (img.isNull()){
         qErrnoWarning("test image missed, exiting..");
         return;
@@ -148,12 +150,13 @@ GLWindow::paintGL(){
     f->glBindImageTexture(0, 0, 0, 0, 0,  GL_READ_WRITE, GL_RGBA8);
     f->glBindImageTexture(1, 0, 0, 0, 0,  GL_READ_WRITE, GL_RGBA8);
 
+    updateAnimParams();
+
+#if SHOW_RESULT
     f->glClearColor(0, m_blurCur, 0, 1);
     f->glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    //f->glDispatchCompute(8,8,1); //no ARB prefix required fof ARB_compute_shader
-    updateAnimParams();
-
+   
     m_texImageInput->bind(0);
     m_texImageTmp->bind(1);
     m_shaderDisplay->bind();
@@ -166,6 +169,7 @@ GLWindow::paintGL(){
     m_vao->release();
     m_shaderDisplay->release();
     m_texImageInput->release(0);
+#endif //SHOW_RESULT
 }
 
 void computeProjection(int winWidth, int winHeight, int imgWidth, int imgHeight, QMatrix4x4 &outProjection, QSizeF &outQuadSize)

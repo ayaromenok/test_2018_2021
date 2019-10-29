@@ -18,13 +18,12 @@ GLWindow::GLWindow()
      m_blurStep(0.01f),
      m_fpsCounter(0),
      m_fpsComputeMult(1),
-     m_radiusX(9),
+     m_radiusX(21),
      m_radiusY(1)
 {
     m_Timer = new QTimer(this);
     connect(m_Timer, SIGNAL(timeout()), this, SLOT(updateFPS()));
-    m_Timer->start(1000);
-
+    m_Timer->start(5000);
 }
 
 GLWindow::~GLWindow()
@@ -35,9 +34,10 @@ GLWindow::~GLWindow()
 void
 GLWindow::updateFPS()
 {
-    qInfo() << "FPS:" << m_fpsCounter
-            << "MOps:" << (m_fpsCounter*m_fpsComputeMult/1024.0f/1024.0f)
-            << "MMul:" << (4*m_fpsCounter*m_fpsComputeMult/1024.0f/1024.0f);
+    //use 5 sec timer for better tolerance
+    qInfo() << "FPS:" << m_fpsCounter/5.0f
+            << "\tMOps:" << (m_fpsCounter/5.0f*m_fpsComputeMult/1024.0f/1024.0f)
+            << "\tMFLOPS:" << (4*m_fpsCounter/5.0f*m_fpsComputeMult/1024.0f/1024.0f);
     m_fpsCounter = 0;
 }
 
@@ -122,7 +122,8 @@ GLWindow::initializeGL(){
     m_vao->create();
     m_workGroups = getWorkGroups(10,QSize(m_texImageInput->width(),m_texImageInput->height()));
 
-    m_fpsComputeMult = m_texImageInput->width()*m_texImageInput->height()* m_radiusX * m_radiusY;;
+    //2 - 1 mul + 1 add
+    m_fpsComputeMult = 2*(m_texImageInput->width()-m_radiusX)*(m_texImageInput->height())* m_radiusX;
     qInfo() << "wg size" << m_workGroups.width() << m_workGroups.height()
             << "tx size" << m_texImageInput->width() << m_texImageInput->height();
 }

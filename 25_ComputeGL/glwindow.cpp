@@ -17,11 +17,14 @@ GLWindow::GLWindow()
      m_blurMax(1.0f),
      m_blurStep(0.01f),
      m_fpsCounter(0),
-     m_fpsComputeMult(1)
+     m_fpsComputeMult(1),
+     m_radiusX(9),
+     m_radiusY(1)
 {
     m_Timer = new QTimer(this);
     connect(m_Timer, SIGNAL(timeout()), this, SLOT(updateFPS()));
     m_Timer->start(1000);
+
 }
 
 GLWindow::~GLWindow()
@@ -118,7 +121,8 @@ GLWindow::initializeGL(){
     m_vao = new QOpenGLVertexArrayObject;
     m_vao->create();
     m_workGroups = getWorkGroups(10,QSize(m_texImageInput->width(),m_texImageInput->height()));
-    m_fpsComputeMult = m_texImageInput->width()*m_texImageInput->height();
+
+    m_fpsComputeMult = m_texImageInput->width()*m_texImageInput->height()* m_radiusX * m_radiusY;;
     qInfo() << "wg size" << m_workGroups.width() << m_workGroups.height()
             << "tx size" << m_texImageInput->width() << m_texImageInput->height();
 }
@@ -132,6 +136,8 @@ GLWindow::paintGL(){
     f->glBindImageTexture(0, m_texImageInput->textureId(), 0, 0, 0,  GL_READ_WRITE, GL_RGBA8);
     f->glBindImageTexture(1, m_texImageTmp->textureId(), 0, 0, 0,  GL_READ_WRITE, GL_RGBA8);
     m_shaderCompute->bind();
+    m_shaderCompute->setUniformValue("radiusX",m_radiusX);
+    m_shaderCompute->setUniformValue("radiusY",m_radiusY);
     f->glDispatchCompute(m_workGroups.width(),m_workGroups.height(),1);
     f->glMemoryBarrier(GL_SHADER_IMAGE_ACCESS_BARRIER_BIT);
     m_shaderCompute->release();

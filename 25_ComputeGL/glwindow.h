@@ -41,6 +41,8 @@ private:
     QSizeF      m_quadSize;
     QSize       m_workGroups;
     quint32     m_fpsComputeMult;
+    quint32     m_radiusX;
+    quint32     m_radiusY;
 
     QTimer                  *m_Timer;
 

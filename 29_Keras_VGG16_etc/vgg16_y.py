@@ -57,8 +57,8 @@ model.summary()
 from keras.callbacks import ModelCheckpoint, EarlyStopping
 
 checkpoint = ModelCheckpoint("vgg16_ySize.h5", monitor='val_accuracy', verbose=1, save_best_only=True, save_weights_only=False, mode='auto', period=1)
-early = EarlyStopping(monitor='val_accuracy', min_delta=0, patience=3, verbose=1, mode='auto')
-hist = model.fit_generator(steps_per_epoch=10,generator=traindata, validation_data= testdata, validation_steps=10,epochs=10,callbacks=[checkpoint,early])
+early = EarlyStopping(monitor='val_accuracy', min_delta=0, patience=10, verbose=1, mode='auto')
+hist = model.fit_generator(steps_per_epoch=100,generator=traindata, validation_data= testdata, validation_steps=10,epochs=100,callbacks=[checkpoint,early])
 
 #import matplotlib.pyplot as plt
 #plt.plot(hist.history["accuracy"])

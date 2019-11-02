@@ -3,6 +3,12 @@ from keras.models import Sequential
 from keras.layers import Dense, Conv2D, MaxPool2D, Flatten
 from keras.preprocessing.image import ImageDataGenerator
 import numpy as np
+import tensorflow as tf
+
+from keras.backend.tensorflow_backend import set_session
+config = tf.ConfigProto()
+config.gpu_options.per_process_gpu_memory_fraction = 0.2
+set_session(tf.Session(config=config))
 
 trdata = ImageDataGenerator()
 traindata = trdata.flow_from_directory(directory="data/train", target_size=(112,112))

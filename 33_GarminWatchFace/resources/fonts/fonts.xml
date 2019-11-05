@@ -1,0 +1,9 @@
+<fonts>
+	<font id="ft24" filename="t24.fnt"/>
+    <font id="ftb24" filename="tb24.fnt"/>
+	<font id="ft28" filename="t28.fnt"/>
+    <font id="ftb28" filename="tb28.fnt"/>
+    <font id="ft32" filename="t32.fnt"/>
+    <font id="ftb32" filename="tb32.fnt"/>
+	<font id="ftb60d" filename="tb60d.fnt"/>
+</fonts>

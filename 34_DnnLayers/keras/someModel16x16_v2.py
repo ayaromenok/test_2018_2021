@@ -16,15 +16,15 @@ tsdata = ImageDataGenerator()
 testdata =  trdata.flow_from_directory(directory="../data/validation", target_size=(16,16))
 
 model = Sequential()
-#16x16x8
+#16x16
 model.add(Conv2D(input_shape=(16,16,3),filters=8,kernel_size=(3,3),padding="same", activation="relu"))
 #model.add(Conv2D(filters=8,kernel_size=(3,3),padding="same", activation="relu"))
-#8x8x8
+#8x8
 model.add(MaxPool2D(pool_size=(2,2),strides=(2,2)))
 model.add(Conv2D(filters=8, kernel_size=(3,3), padding="same", activation="relu"))
 #4x4
 model.add(MaxPool2D(pool_size=(2,2),strides=(2,2)))
-#latest
+#need to tf.reshape from 4x4 to 16x1
 model.add(Flatten())
 model.add(Dense(units=128,activation="relu"))
 model.add(Dense(units=64,activation="relu"))

@@ -47,7 +47,14 @@ class WatchFace00View extends WatchUi.WatchFace {
         //set backgroud to black
         dc.setColor(Graphics.COLOR_BLACK, Graphics.COLOR_BLACK);
         dc.clear(); 
-        
+                //240pix round screen
+        dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
+        dc.drawArc(120,120,120,Graphics.ARC_CLOCKWISE, 315, 225);
+        dc.drawArc(120,120,115,Graphics.ARC_CLOCKWISE, 315, 225);
+        dc.setColor(Graphics.COLOR_BLUE, Graphics.COLOR_BLACK);
+        dc.fillCircle(160, 120, 20);
+        dc.fillPolygon([[100,100],[120,140],[130,135],[140,100]]);
+         
         //60d
         dc.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_BLACK);
         dc.drawText(120, 10, ftb60d, timeString, Graphics.TEXT_JUSTIFY_CENTER);

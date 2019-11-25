@@ -1,4 +1,5 @@
-QT += gui network networkauth
+QT += gui network
+# networkauth
 
 CONFIG += c++11 console
 CONFIG -= app_bundle

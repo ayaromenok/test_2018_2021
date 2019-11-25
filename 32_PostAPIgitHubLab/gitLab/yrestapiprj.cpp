@@ -1,14 +1,15 @@
 #include <QtCore>
 #include <QtNetwork>
 #include "yrestapiprj.h"
-#include <QtNetworkAuth>
+//#include <QtNetworkAuth>
 
 YRestApiPrj::YRestApiPrj(QObject *parent) : QObject(parent)
 {
     _mgr = new QNetworkAccessManager(this);
-    //private_token=3tqsv4mioNHNyXS1zVAB
-    _url.setUrl("https://gitlab.com/ayaromenok/projects?private_token=3tqsv4mioNHNyXS1zVAB");
+    //private_token=zHQ12Wpr7cyzdfZ_xMwn
+    _url.setUrl("https://gitlab.com/api/v4/projects/15163048/issues");
     _request = new QNetworkRequest(_url);
+    _request->setHeader(QNetworkRequest::ContentTypeHeader, "zHQ12Wpr7cyzdfZ_xMwn");
     //_request->setHeader(QNetworkRequest::ContentTypeHeader, "application/vnd.github.v3+json");
     //_request->setHeader(QNetworkRequest::ContentTypeHeader, "text/plain");
     _reply=_mgr->get(*_request);

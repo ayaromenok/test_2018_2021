@@ -26,6 +26,8 @@ public:
     void setUser(int user);
     void setTitle(QString title);
     void setBody(QString body);
+
+    void dumpToConsole();
 signals:
     void idChanged(int);
     void iidChanged(int);

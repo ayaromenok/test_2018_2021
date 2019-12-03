@@ -4,6 +4,7 @@
 #include "widget.h"
 #include "yissue.h"
 #include "yuser.h"
+#include "yissuewidget.h"
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
@@ -28,6 +29,11 @@ Widget::Widget(QWidget *parent)
     }
     setGeometry(100, 100, 1024, 600);
     createUI();
+
+    for (int i=0; i<_il->length(); i++){
+        YIssueWidget *_iw = new YIssueWidget(_il->at(i));
+        _ltIn->addWidget(_iw);
+    }
 }
 
 Widget::~Widget()

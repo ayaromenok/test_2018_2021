@@ -4,7 +4,7 @@
 
 #include <QWidget>
 class YIssue;
-//class YUser;
+class YUser;
 
 class Widget : public QWidget
 {
@@ -15,5 +15,6 @@ public:
     ~Widget();
 private:
     QList<YIssue*>  *_il;
+    QList<YUser*>   *_ul;
 };
 #endif // WIDGET_H

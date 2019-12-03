@@ -19,11 +19,13 @@ SOURCES += \
     main.cpp \
     widget.cpp \
     yissue.cpp \
+    yissuewidget.cpp \
     yuser.cpp
 
 HEADERS += \
     widget.h \
     yissue.h \
+    yissuewidget.h \
     yuser.h
 
 # Default rules for deployment.

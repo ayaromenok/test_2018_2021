@@ -26,6 +26,7 @@ Widget::Widget(QWidget *parent)
         user->setUserName("userName №"+QString::number(i));
         _ul->append(user);
     }
+    createUI();
 }
 
 Widget::~Widget()
@@ -36,3 +37,24 @@ Widget::~Widget()
     delete _ul;
 }
 
+void
+Widget::createUI()
+{
+    _ltMain = new QHBoxLayout(this);
+
+    _gbIn = new QGroupBox("In", this);
+    _gbToDo = new QGroupBox("ToDo", this);
+    _gbDoing = new QGroupBox("Doing", this);
+    _gbDone = new QGroupBox("Done", this);
+
+    _ltIn = new QVBoxLayout(_gbIn);
+    _ltToDo = new QVBoxLayout(_gbToDo);
+    _ltDoing = new QVBoxLayout(_gbDoing);
+    _ltDone = new QVBoxLayout(_gbDone);
+
+    _ltMain->addWidget(_gbIn);
+    _ltMain->addWidget(_gbToDo);
+    _ltMain->addWidget(_gbDoing);
+    _ltMain->addWidget(_gbDone);
+    setLayout(_ltMain);
+}

@@ -26,6 +26,7 @@ Widget::Widget(QWidget *parent)
         user->setUserName("userName №"+QString::number(i));
         _ul->append(user);
     }
+    setGeometry(100, 100, 1024, 600);
     createUI();
 }
 

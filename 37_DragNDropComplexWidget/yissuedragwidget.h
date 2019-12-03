@@ -8,6 +8,9 @@ class QLabel;
 class QVBoxLayout;
 class YIssueWidget;
 
+class QDragEnterEvent;
+class QDropEvent;
+
 class YIssueDragWidget : public QWidget
 {
     Q_OBJECT
@@ -16,7 +19,11 @@ public:
     void addIssue(YIssueWidget *issue);
 
 signals:
-
+protected:
+    void dragEnterEvent(QDragEnterEvent *event) override;
+    void dragMoveEvent(QDragMoveEvent *event) override;
+    void dropEvent(QDropEvent *event) override;
+    void mousePressEvent(QMouseEvent *event) override;
 private:
     void createUI();
     QFrame          *_fMain;

@@ -5,6 +5,7 @@
 #include "yissue.h"
 #include "yuser.h"
 #include "yissuewidget.h"
+#include "yissuedragwidget.h"
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
@@ -32,7 +33,7 @@ Widget::Widget(QWidget *parent)
 
     for (int i=0; i<_il->length(); i++){
         YIssueWidget *_iw = new YIssueWidget(_il->at(i));
-        _ltIn->addWidget(_iw);
+        _ydwIn->addIssue(_iw);
     }
 }
 
@@ -49,19 +50,19 @@ Widget::createUI()
 {
     _ltMain = new QHBoxLayout(this);
 
-    _gbIn = new QGroupBox("In", this);
-    _gbToDo = new QGroupBox("ToDo", this);
-    _gbDoing = new QGroupBox("Doing", this);
-    _gbDone = new QGroupBox("Done", this);
+    _ydwIn = new YIssueDragWidget("In", this);
+    _ydwToDo = new YIssueDragWidget("ToDo", this);
+    _ydwDoing = new YIssueDragWidget("Doing", this);
+    _ydwDone = new YIssueDragWidget("Done", this);
 
-    _ltIn = new QVBoxLayout(_gbIn);
-    _ltToDo = new QVBoxLayout(_gbToDo);
-    _ltDoing = new QVBoxLayout(_gbDoing);
-    _ltDone = new QVBoxLayout(_gbDone);
+//    _ltIn = new QVBoxLayout(_gbIn);
+//    _ltToDo = new QVBoxLayout(_gbToDo);
+//    _ltDoing = new QVBoxLayout(_gbDoing);
+//    _ltDone = new QVBoxLayout(_gbDone);
 
-    _ltMain->addWidget(_gbIn);
-    _ltMain->addWidget(_gbToDo);
-    _ltMain->addWidget(_gbDoing);
-    _ltMain->addWidget(_gbDone);
+    _ltMain->addWidget(_ydwIn);
+    _ltMain->addWidget(_ydwToDo);
+    _ltMain->addWidget(_ydwDoing);
+    _ltMain->addWidget(_ydwDone);
     setLayout(_ltMain);
 }

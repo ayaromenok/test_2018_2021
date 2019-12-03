@@ -8,6 +8,7 @@ class YUser;
 class QHBoxLayout;
 class QVBoxLayout;
 class QGroupBox;
+class YIssueDragWidget;
 
 class Widget : public QWidget
 {
@@ -18,17 +19,17 @@ public:
     ~Widget();
 private:
     void createUI();
-    QList<YIssue*>  *_il;
-    QList<YUser*>   *_ul;
-    QHBoxLayout     *_ltMain;
-    QVBoxLayout     *_ltIn;
-    QVBoxLayout     *_ltToDo;
-    QVBoxLayout     *_ltDoing;
-    QVBoxLayout     *_ltDone;
-    QGroupBox       *_gbIn;
-    QGroupBox       *_gbToDo;
-    QGroupBox       *_gbDoing;
-    QGroupBox       *_gbDone;
+    QList<YIssue*>      *_il;
+    QList<YUser*>       *_ul;
+    QHBoxLayout         *_ltMain;
+    QVBoxLayout         *_ltIn;
+    QVBoxLayout         *_ltToDo;
+    QVBoxLayout         *_ltDoing;
+    QVBoxLayout         *_ltDone;
+    YIssueDragWidget    *_ydwIn;
+    YIssueDragWidget    *_ydwToDo;
+    YIssueDragWidget    *_ydwDoing;
+    YIssueDragWidget    *_ydwDone;
 
 };
 #endif // WIDGET_H

@@ -19,12 +19,14 @@ SOURCES += \
     main.cpp \
     widget.cpp \
     yissue.cpp \
+    yissuedragwidget.cpp \
     yissuewidget.cpp \
     yuser.cpp
 
 HEADERS += \
     widget.h \
     yissue.h \
+    yissuedragwidget.h \
     yissuewidget.h \
     yuser.h
 

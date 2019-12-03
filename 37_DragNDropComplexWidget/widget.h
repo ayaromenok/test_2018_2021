@@ -3,6 +3,8 @@
 #define WIDGET_H
 
 #include <QWidget>
+class YIssue;
+//class YUser;
 
 class Widget : public QWidget
 {
@@ -11,5 +13,7 @@ class Widget : public QWidget
 public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
+private:
+    QList<YIssue*>  *_il;
 };
 #endif // WIDGET_H

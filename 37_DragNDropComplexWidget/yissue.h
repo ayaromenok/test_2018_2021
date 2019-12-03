@@ -33,7 +33,7 @@ signals:
     void iidChanged(int);
     void userChanged(int);
     void titleChanged(const QString &newTitle);
-    void bodyChanged(const QString &bodyTitle);
+    void bodyChanged(const QString &newBodyTitle);
 
 private:
     int         _id;

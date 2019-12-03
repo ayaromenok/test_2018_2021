@@ -7,11 +7,12 @@ YIssue::YIssue(QObject *parent) : QObject(parent),
     _id(0),
     _iid(0),
     _user(0),
-    _title(""),
-    _body("")
+    _title("title"),
+    _body("issue body")
 {
 
 }
+
 void
 YIssue::setId(int id)
 {
@@ -41,6 +42,7 @@ YIssue::setUser(int user)
         emit userChanged(user);
     }
 }
+
 void
 YIssue::setTitle(QString title)
 {
@@ -50,6 +52,7 @@ YIssue::setTitle(QString title)
         emit titleChanged(_title);
     }
 }
+
 void
 YIssue::setBody(QString body)
 {

@@ -63,5 +63,5 @@ YIssue::setBody(QString body)
 void
 YIssue::dumpToConsole()
 {
-    qInfo() << _id << _iid << _user << _title << body;
+    qInfo() << _id << _iid << _user << _title << _body;
 }

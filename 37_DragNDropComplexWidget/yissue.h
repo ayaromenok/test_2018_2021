@@ -16,7 +16,7 @@ public:
     explicit YIssue(QObject *parent = nullptr);
 
     int id(){return _id;}
-    int iid(){return _id;}
+    int iid(){return _iid;}
     int user(){return _user;}
     QString title(){return _title;}
     QString body(){return _body;}

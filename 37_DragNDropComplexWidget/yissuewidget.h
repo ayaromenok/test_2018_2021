@@ -7,6 +7,7 @@ class YIssue;
 class QVBoxLayout;
 class QHBoxLayout;
 class QLabel;
+class QFrame;
 
 class YIssueWidget : public QWidget
 {
@@ -23,6 +24,7 @@ private:
     QHBoxLayout *_ltTopLine;
     QHBoxLayout *_ltBody;
     QHBoxLayout *_ltBotLine;
+    QFrame      *_fMain;
     QLabel      *_lbId;
     QLabel      *_lbTitle;
     QLabel      *_lbBody;

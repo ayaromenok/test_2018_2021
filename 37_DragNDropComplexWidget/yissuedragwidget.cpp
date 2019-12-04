@@ -2,6 +2,7 @@
 #include <QtWidgets>
 #include "yissuedragwidget.h"
 #include "yissuewidget.h"
+#include "yissuewidgetl.h"
 
 static inline QString YIssueMimeType() {
     return QStringLiteral("application/x-fridgemagnet");
@@ -31,6 +32,11 @@ YIssueDragWidget::addIssue(YIssueWidget *issue)
     _ltMain->addWidget(issue);
 }
 
+void
+YIssueDragWidget::addIssue(YIssueWidgetL *issue)
+{
+    _ltMain->addWidget(issue);
+}
 void
 YIssueDragWidget::dragEnterEvent(QDragEnterEvent *event)
 {

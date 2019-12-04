@@ -21,6 +21,7 @@ SOURCES += \
     yissue.cpp \
     yissuedragwidget.cpp \
     yissuewidget.cpp \
+    yissuewidgetl.cpp \
     yuser.cpp
 
 HEADERS += \
@@ -28,6 +29,7 @@ HEADERS += \
     yissue.h \
     yissuedragwidget.h \
     yissuewidget.h \
+    yissuewidgetl.h \
     yuser.h
 
 # Default rules for deployment.

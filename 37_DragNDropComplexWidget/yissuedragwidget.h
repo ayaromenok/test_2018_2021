@@ -7,6 +7,7 @@ class QFrame;
 class QLabel;
 class QVBoxLayout;
 class YIssueWidget;
+class YIssueWidgetL;
 
 class QDragEnterEvent;
 class QDropEvent;
@@ -17,6 +18,7 @@ class YIssueDragWidget : public QWidget
 public:
     explicit YIssueDragWidget(const QString &title, QWidget *parent = nullptr);
     void addIssue(YIssueWidget *issue);
+    void addIssue(YIssueWidgetL *issue);
 
 signals:
 protected:

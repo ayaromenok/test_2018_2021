@@ -6,6 +6,7 @@
 #include "yuser.h"
 #include "yissuewidget.h"
 #include "yissuedragwidget.h"
+#include "yissuewidgetl.h"
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
@@ -31,8 +32,12 @@ Widget::Widget(QWidget *parent)
     setGeometry(100, 100, 1024, 600);
     createUI();
 
-    for (int i=0; i<_il->length(); i++){
+    for (int i=0; i<3; i++){
         YIssueWidget *_iw = new YIssueWidget(_il->at(i));
+        _ydwIn->addIssue(_iw);
+    }
+    for (int i=3; i<_il->length(); i++){
+        YIssueWidgetL *_iw = new YIssueWidgetL(_il->at(i)->title(), this);
         _ydwIn->addIssue(_iw);
     }
 }

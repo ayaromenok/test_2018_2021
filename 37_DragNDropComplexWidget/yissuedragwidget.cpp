@@ -11,6 +11,7 @@ YIssueDragWidget::YIssueDragWidget(const QString &title, QWidget *parent) :
     QWidget(parent)
 {
     _title = title;
+    setObjectName(title);
     createUI();
     setAcceptDrops(true);
 }
@@ -51,7 +52,7 @@ YIssueDragWidget::dragMoveEvent(QDragMoveEvent *event)
     } else {
         event->acceptProposedAction();
     }
-    qDebug() << __PRETTY_FUNCTION__;
+    qDebug() << __PRETTY_FUNCTION__ << event->source()->objectName();
 }
 
 void
@@ -63,7 +64,8 @@ YIssueDragWidget::dropEvent(QDropEvent *event)
     } else {
         event->acceptProposedAction();
     }
-    qDebug() << __PRETTY_FUNCTION__;
+
+    qDebug() << __PRETTY_FUNCTION__ << event->source()->objectName();
 }
 
 void
@@ -80,24 +82,18 @@ YIssueDragWidget::mousePressEvent(QMouseEvent *event)
     QDataStream dataStream(&itemData, QIODevice::WriteOnly);
     dataStream <<  QPoint(hotSpot);
 
-    //! [15]
-        QMimeData *mimeData = new QMimeData;
-        mimeData->setData(YIssueMimeType(), itemData);
-//        mimeData->setText(child->labelText());
-    //! [15]
+    QMimeData *mimeData = new QMimeData;
+    mimeData->setData(YIssueMimeType(), itemData);
+    //        mimeData->setText(child->labelText());
 
-    //! [16]
-        QDrag *drag = new QDrag(this);
-        drag->setMimeData(mimeData);
-        //drag->setPixmap(*child->pixmap());
-        drag->setHotSpot(hotSpot);
+    QDrag *drag = new QDrag(this);
+    drag->setMimeData(mimeData);
+    //drag->setPixmap(*child->pixmap());
+    drag->setHotSpot(hotSpot);
 
-        child->hide();
-    //! [16]
-
-    //! [17]
-        if (drag->exec(Qt::MoveAction | Qt::CopyAction, Qt::CopyAction) == Qt::MoveAction)
-            child->close();
-        else
-            child->show();
+    child->hide();
+    if (drag->exec(Qt::MoveAction | Qt::CopyAction, Qt::CopyAction) == Qt::MoveAction)
+        child->close();
+    else
+        child->show();
 }

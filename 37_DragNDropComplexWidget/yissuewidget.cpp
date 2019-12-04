@@ -28,6 +28,7 @@ YIssueWidget::createUI()
     _lbTitle = new QLabel(_issue->title());
     _lbTitle->setFrameStyle(QFrame::Panel | QFrame::Raised);
     _lbTitle->setLineWidth(2);
+    setObjectName(_issue->title());
 
     _lbBody = new QLabel(_issue->body());
     _lbBody->setFrameStyle(QFrame::Panel | QFrame::Sunken);

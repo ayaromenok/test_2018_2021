@@ -58,7 +58,7 @@ YIssueDragWidget::dragMoveEvent(QDragMoveEvent *event)
     } else {
         event->acceptProposedAction();
     }
-    qDebug() << __PRETTY_FUNCTION__ << event->source()->objectName();
+//    qDebug() << __PRETTY_FUNCTION__ << event->source()->objectName();
 }
 
 void

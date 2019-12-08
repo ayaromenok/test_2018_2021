@@ -24,8 +24,8 @@ model.add(MaxPool2D(pool_size=(2,2),strides=(2,2)))
 model.add(Conv2D(filters=8, kernel_size=(3,3), padding="same", activation="relu"))
 #4x4
 model.add(MaxPool2D(pool_size=(2,2),strides=(2,2)))
-#need to tf.reshape from 4x4 to 16x1
-model.add(Flatten())
+#need to use tf.reshape from 4x4x8 to 256x1
+#model.add(Flatten())
 model.add(Dense(units=128,activation="relu"))
 model.add(Dense(units=64,activation="relu"))
 model.add(Dense(units=2, activation="softmax"))

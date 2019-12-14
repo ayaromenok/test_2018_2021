@@ -1,0 +1,1 @@
+- to build on OSX for mobile/simulator upgrade of OSX and XCode tools(minimum to 13.2) required

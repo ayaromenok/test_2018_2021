@@ -23,11 +23,12 @@
 	- 7 interlaced-tb (interlaced fielsd, top first)
 	- 8 interlace-bt (--//--, bottom first)
 	- 0 NULL
- - buffercount: - number
+ - num-buffers(buffercount): - number
 
  - imageprocessor
 	- rkisp
-
+ - path-iqf (required for analyzer etc) "path-iqf=/etc/cam_iq/ov4989.xml"
+	
  - analyzer (only with cam_iq)
     - 0 - NULL
     - 1 - simple

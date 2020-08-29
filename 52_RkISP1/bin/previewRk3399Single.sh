@@ -2,4 +2,4 @@
 #glimagesink - for dual cam(but with delay)
 export DISPLAY=:0.0
 
-gst-launch-1.0 rkisp device=/dev/video0 io-mode=4 path-iqf=../cam_iq/ov4689.xml ! video/x-raw,format=NV12,width=640,height=360,framerate=121/1 ! rkximagesink
+gst-launch-1.0 rkisp device=/dev/video0 io-mode=4 path-iqf=../cam_iq/ov4689_0.2.5.xml ! video/x-raw,format=NV12,width=640,height=360,framerate=121/1 ! rkximagesink

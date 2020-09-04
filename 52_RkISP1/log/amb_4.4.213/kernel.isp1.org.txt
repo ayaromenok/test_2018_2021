@@ -1,0 +1,4 @@
+[    1.487635] iommu: Adding device ff910000.rkisp1 to group 4
+[    1.487734] iommu: Adding device ff920000.rkisp1 to group 5
+[    3.900125] rockchip-pm-domain ff310000.power-management:power-controller: Looking up pd_isp1-supply from device tree
+[    3.900142] rockchip-pm-domain ff310000.power-management:power-controller: Looking up pd_isp1-supply property in node /power-management@ff310000/power-controller failed

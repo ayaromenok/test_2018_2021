@@ -1,0 +1,30 @@
+[    2.996876] ov4689 1-0036: driver version: 00.01.01
+[    2.996895] ov4689 1-0036: could not get module information!
+[    2.996956] ov4689 1-0036: GPIO lookup for consumer reset
+[    2.996969] ov4689 1-0036: using device tree for GPIO lookup
+[    2.997010] of_get_named_gpiod_flags: parsed 'reset-gpios' property of node '/i2c@ff110000/ov4689@36[0]' - status (0)
+[    2.997049] ov4689 1-0036: GPIO lookup for consumer pwdn
+[    2.997061] ov4689 1-0036: using device tree for GPIO lookup
+[    2.997099] of_get_named_gpiod_flags: parsed 'pwdn-gpios' property of node '/i2c@ff110000/ov4689@36[0]' - status (0)
+[    2.997381] ov4689 1-0036: Looking up avdd-supply from device tree
+[    2.997397] ov4689 1-0036: Looking up avdd-supply property in node /i2c@ff110000/ov4689@36 failed
+[    2.997556] ov4689 1-0036: Looking up dovdd-supply from device tree
+[    2.997572] ov4689 1-0036: Looking up dovdd-supply property in node /i2c@ff110000/ov4689@36 failed
+[    2.997705] ov4689 1-0036: Looking up dvdd-supply from device tree
+[    2.997721] ov4689 1-0036: Looking up dvdd-supply property in node /i2c@ff110000/ov4689@36 failed
+[    3.000077] ov4689 1-0036: Detected OV004688 sensor
+[    3.000435] ov4689 2-0036: driver version: 00.01.01
+[    3.000454] ov4689 2-0036: could not get module information!
+[    3.000493] ov4689 2-0036: GPIO lookup for consumer reset
+[    3.000505] ov4689 2-0036: using device tree for GPIO lookup
+[    3.000545] of_get_named_gpiod_flags: parsed 'reset-gpios' property of node '/i2c@ff120000/ov4689@36[0]' - status (0)
+[    3.000583] ov4689 2-0036: GPIO lookup for consumer pwdn
+[    3.000594] ov4689 2-0036: using device tree for GPIO lookup
+[    3.000632] of_get_named_gpiod_flags: parsed 'pwdn-gpios' property of node '/i2c@ff120000/ov4689@36[0]' - status (0)
+[    3.000880] ov4689 2-0036: Looking up avdd-supply from device tree
+[    3.000896] ov4689 2-0036: Looking up avdd-supply property in node /i2c@ff120000/ov4689@36 failed
+[    3.000981] ov4689 2-0036: Looking up dovdd-supply from device tree
+[    3.000997] ov4689 2-0036: Looking up dovdd-supply property in node /i2c@ff120000/ov4689@36 failed
+[    3.001098] ov4689 2-0036: Looking up dvdd-supply from device tree
+[    3.001113] ov4689 2-0036: Looking up dvdd-supply property in node /i2c@ff120000/ov4689@36 failed
+[    3.003755] ov4689 2-0036: Detected OV004688 sensor

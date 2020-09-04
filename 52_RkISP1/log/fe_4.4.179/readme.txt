@@ -2,4 +2,5 @@
 - exposure is NOK 
 
 
-if /proc/config.gz not present - `sudo modprobe configs` 
+- kernel config - if /proc/config.gz not present - `sudo modprobe configs` 
+- device tree - `dtc -I fs /sys/firmware/devicetree/base`

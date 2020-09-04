@@ -1,0 +1,22 @@
+[    0.249260] iommu: Adding device ff910000.rkisp1 to group 4
+[    0.249845] iommu: Adding device ff920000.rkisp1 to group 5
+[    2.209962] rkisp1 ff910000.rkisp1: rkisp1 driver version: v00.01.04
+[    2.211040] rkisp1 ff910000.rkisp1: Missing rockchip,grf property
+[    2.216615] rkisp1: Async subdev notifier completed
+[    2.217282] rkisp1 ff910000.rkisp1: GPIO lookup for consumer vsirq
+[    2.217290] rkisp1 ff910000.rkisp1: using device tree for GPIO lookup
+[    2.217300] of_get_named_gpiod_flags: can't parse 'vsirq-gpios' property of node '/rkisp1@ff910000[0]'
+[    2.217308] of_get_named_gpiod_flags: can't parse 'vsirq-gpio' property of node '/rkisp1@ff910000[0]'
+[    2.217315] rkisp1 ff910000.rkisp1: using lookup tables for GPIO lookup
+[    2.217323] rkisp1 ff910000.rkisp1: lookup for GPIO vsirq failed
+[    2.217601] rkisp1 ff920000.rkisp1: rkisp1 driver version: v00.01.04
+[    2.218245] rkisp1 ff920000.rkisp1: Missing rockchip,grf property
+[    2.222564] rkisp1: Async subdev notifier completed
+[    2.223219] rkisp1 ff920000.rkisp1: GPIO lookup for consumer vsirq
+[    2.223227] rkisp1 ff920000.rkisp1: using device tree for GPIO lookup
+[    2.223237] of_get_named_gpiod_flags: can't parse 'vsirq-gpios' property of node '/rkisp1@ff920000[0]'
+[    2.223245] of_get_named_gpiod_flags: can't parse 'vsirq-gpio' property of node '/rkisp1@ff920000[0]'
+[    2.223252] rkisp1 ff920000.rkisp1: using lookup tables for GPIO lookup
+[    2.223260] rkisp1 ff920000.rkisp1: lookup for GPIO vsirq failed
+[    2.243071] rkisp1 ff910000.rkisp1: clear unready subdev num: 0
+[    2.243615] rkisp1 ff920000.rkisp1: clear unready subdev num: 0

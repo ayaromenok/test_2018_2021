@@ -1,0 +1,2 @@
+- dual cam is OK
+- exposure is NOK 

@@ -1,0 +1,18 @@
+[    1.582450] ov4689 1-0036: driver version: 00.01.01
+[    1.582898] ov4689 1-0036: could not get module information!
+[    1.583492] ov4689 1-0036: GPIO lookup for consumer reset
+[    1.583502] ov4689 1-0036: using device tree for GPIO lookup
+[    1.583532] of_get_named_gpiod_flags: parsed 'reset-gpios' property of node '/i2c@ff110000/ov4689@36[0]' - status (0)
+[    1.583562] ov4689 1-0036: GPIO lookup for consumer pwdn
+[    1.583571] ov4689 1-0036: using device tree for GPIO lookup
+[    1.583597] of_get_named_gpiod_flags: parsed 'pwdn-gpios' property of node '/i2c@ff110000/ov4689@36[0]' - status (0)
+[    1.587887] ov4689 1-0036: Detected OV004688 sensor
+[    1.588820] ov4689 2-0036: driver version: 00.01.01
+[    1.589280] ov4689 2-0036: could not get module information!
+[    1.589814] ov4689 2-0036: GPIO lookup for consumer reset
+[    1.589825] ov4689 2-0036: using device tree for GPIO lookup
+[    1.589861] of_get_named_gpiod_flags: parsed 'reset-gpios' property of node '/i2c@ff120000/ov4689@36[0]' - status (0)
+[    1.589901] ov4689 2-0036: GPIO lookup for consumer pwdn
+[    1.589911] ov4689 2-0036: using device tree for GPIO lookup
+[    1.589943] of_get_named_gpiod_flags: parsed 'pwdn-gpios' property of node '/i2c@ff120000/ov4689@36[0]' - status (0)
+[    1.594586] ov4689 2-0036: Detected OV004688 sensor

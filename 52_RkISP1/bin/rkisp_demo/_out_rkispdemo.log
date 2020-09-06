@@ -1,0 +1,81 @@
+target expo: 0.050000
+target gain: 0.001000
+open /usr/lib/librkisp.so successed
+dlsym rkisp_start success
+XCAM ERROR v4l2_device.cpp:254: VIDIOC_QUERYCAP returned: -1 (Inappropriate ioctl for device)
+XCAM ERROR v4l2_device.cpp:254: VIDIOC_QUERYCAP returned: -1 (Inappropriate ioctl for device)
+device manager start, capture dev fd: 5
+meta callback!
+device manager isp_init
+rkisp_init engine succeed
+XCAM ERROR settings_processor.cpp:244: exposure time 50 ms is bigger than the max exposure time 0 ms
+No.1
+expousre time is 0.000099 secs
+expousre gain is 1.000000
+expousre max gain is 32.000000 
+expousre max time is 0.030000 secs
+meta frame id is -1
+meta frame timestamp is 0
+XCAM ERROR aec.c:1794: GAIN OUT OF RANGE: lasttime-gain: 0.000000-0.000000
+meta callback!
+process_image size: 460800
+XCAM ERROR aec.c:1794: GAIN OUT OF RANGE: lasttime-gain: 0.000000-0.000000
+meta callback!
+bytesused 460800
+No.2
+expousre time is 0.001800 secs
+expousre gain is 1.000000
+expousre max gain is 32.000000 
+expousre max time is 0.030000 secs
+meta frame id is 0
+meta frame timestamp is 2349853417243
+XCAM ERROR aec.c:1794: GAIN OUT OF RANGE: lasttime-gain: 0.000000-0.000000
+meta callback!
+process_image size: 460800
+XCAM ERROR aec.c:1794: GAIN OUT OF RANGE: lasttime-gain: 0.000000-0.000000
+meta callback!
+bytesused 460800
+No.3
+expousre time is 0.001800 secs
+expousre gain is 1.000000
+expousre max gain is 32.000000 
+expousre max time is 0.030000 secs
+meta frame id is 1
+meta frame timestamp is 2349886878509
+XCAM ERROR aec.c:1794: GAIN OUT OF RANGE: lasttime-gain: 0.000000-0.000000
+meta callback!
+process_image size: 460800
+XCAM ERROR aec.c:1794: GAIN OUT OF RANGE: lasttime-gain: 0.000000-0.000000
+meta callback!
+bytesused 460800
+No.4
+expousre time is 0.001800 secs
+expousre gain is 1.000000
+expousre max gain is 32.000000 
+expousre max time is 0.030000 secs
+meta frame id is 2
+meta frame timestamp is 2349920340650
+XCAM ERROR aec.c:1794: GAIN OUT OF RANGE: lasttime-gain: 0.000000-0.000000
+meta callback!
+process_image size: 460800
+XCAM ERROR aec.c:1794: GAIN OUT OF RANGE: lasttime-gain: 0.000000-0.000000
+meta callback!
+bytesused 460800
+No.5
+expousre time is 0.000085 secs
+expousre gain is 1.000000
+expousre max gain is 32.000000 
+expousre max time is 0.030000 secs
+meta frame id is 3
+meta frame timestamp is 2349953851707
+XCAM ERROR aec.c:1794: GAIN OUT OF RANGE: lasttime-gain: 0.000000-0.000000
+XCAM ERROR rkiq_awb_wrapper.cpp:134: xcam_analyze_awb:awb run failure, errorno: 6
+meta callback!
+process_image size: 460800
+XCAM ERROR aec.c:1794: GAIN OUT OF RANGE: lasttime-gain: 0.000000-0.000000
+XCAM ERROR rkiq_awb_wrapper.cpp:134: xcam_analyze_awb:awb run failure, errorno: 6
+meta callback!
+bytesused 460800
+
+READ AND SAVE DONE!
+stop rkisp engine

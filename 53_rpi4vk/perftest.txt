@@ -1,10 +1,10 @@
 Sascha Willems 
-			VC6		GF1050		JetsonNano
+			VC6/debug	GF1050		JetsonNano 	BroadwellGT2(HD5500)
 computeShader	
-	emboss		5		1439
-	esgedetect	5		1255
-	sharpen		2		1249
-computeCloth		15		1020
-computeCullAndLOD	<1		
-compureParticles	5		
-computeRayTracing	<1
+	emboss		5		1439		405		248
+	edgedetect	5		1255		270		145
+	sharpen		2		1249		268		163
+computeCloth		15		1020		162		108
+computeCullAndLOD	<1		45		11		4
+compureParticles	5		340		44		32
+computeRayTracing	<1		67		7		16

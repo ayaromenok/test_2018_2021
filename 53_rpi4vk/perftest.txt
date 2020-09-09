@@ -1,0 +1,6 @@
+Sacha Willems 
+			VC6		GF1050		JetsonNano
+computeShader	
+	emboss				1439
+	esgedetect			1255
+	sharpen				1249

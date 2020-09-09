@@ -1,6 +1,10 @@
-Sacha Willems 
+Sascha Willems 
 			VC6		GF1050		JetsonNano
 computeShader	
-	emboss				1439
-	esgedetect			1255
-	sharpen				1249
+	emboss		5		1439
+	esgedetect	5		1255
+	sharpen		2		1249
+computeCloth		15		1020
+computeCullAndLOD	<1		
+compureParticles	5		
+computeRayTracing	<1

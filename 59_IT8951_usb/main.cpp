@@ -3,6 +3,7 @@
 #include <libusb-1.0/libusb.h>
 
 using namespace std;
+//IT8951 is 048d:8951
 
 static void print_devs(libusb_device **devs)
 {
@@ -17,8 +18,8 @@ static void print_devs(libusb_device **devs)
                         fprintf(stderr, "failed to get device descriptor");
                         return;
                 }
-
-                printf("%04x:%04x (bus %d, device %d)",
+                if ((desc.idVendor == 0x048d) & (desc.idProduct==0x8951)){
+                printf("IT 8951 found at %04x:%04x (bus %d, device %d)",
                         desc.idVendor, desc.idProduct,
                         libusb_get_bus_number(dev), libusb_get_device_address(dev));
 
@@ -29,6 +30,7 @@ static void print_devs(libusb_device **devs)
                                 printf(".%d", path[j]);
                 }
                 printf("\n");
+                }
         }
 }
 

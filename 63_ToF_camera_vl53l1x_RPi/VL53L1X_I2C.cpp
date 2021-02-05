@@ -31,7 +31,8 @@ using namespace std;
 
 int main()
 {
-   int fd, result;
+    int fd=0;
+    int result=0;
 
    // Initialize the interface by giving it an external device ID.
    // The MCP4725 defaults to address 0x60.   
@@ -41,6 +42,13 @@ int main()
    fd = wiringPiI2CSetup(0x29);
 
    cout << "Init result: "<< fd << endl;
+
+    result = wiringPiI2CReadReg8(fd, 0x010F);
+    cout << "Model ID:" << result << endl;
+    result = wiringPiI2CReadReg8(fd, 0x0110);
+    cout << "Module Type:" << result << endl;
+    result = wiringPiI2CReadReg8(fd, 0x0111);
+    cout << "Mask revision:" << result << endl;
 /*
    for(int i = 0; i < 0x0000ffff; i++)
    {
